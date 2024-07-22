@@ -1,6 +1,6 @@
 -- vars --
 
-print('newver 3.1')
+print('newver 3.2')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -177,7 +177,6 @@ do
 			Cfolder = setting.Cfolder or centrl.util.FolderName
 		}
 
-
 		task.wait(3)
 
 		tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
@@ -241,9 +240,9 @@ do
 	end
 end
 
-if not centrl.loadsettings({}) then
-	centrl.loadsettings({})
-end
+centrl.loadsettings({
+	Cfolder = 'cent' -- Default folder name
+})
 
 
 -- setup in util
