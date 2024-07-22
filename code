@@ -1,6 +1,6 @@
 -- vars --
 
-print('newver 3.2')
+print('newver 3.3')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -239,10 +239,6 @@ do
 		task.wait(1)
 	end
 end
-
-centrl.loadsettings({
-	Cfolder = 'cent' -- Default folder name
-})
 
 
 -- setup in util
