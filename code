@@ -1,6 +1,6 @@
 -- vars --
 
-print('new ver')
+print('newver 2')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -156,7 +156,7 @@ end
 
 do
 	
-function centrl:load()
+function centrl:load(setting)
 	local loader = loader
 	loader.Parent = coregui
 	local loaderframe = loader.Frame
@@ -171,6 +171,10 @@ function centrl:load()
 	loaderframe.logo.ImageTransparency = 1
 	loaderframe.UIScale.Scale = 0.85
 	loaderframe.UIStroke.Transparency = 1
+		
+		local uisettings = {
+			cfolder = setting.cfolder
+		}
 
 
 	task.wait(3)
@@ -194,7 +198,8 @@ function centrl:load()
 	end
 
 	-- Add files
-	workText.Text = 'Checking/Adding Files...'
+		workText.Text = 'Checking/Adding Files...'
+		print(uisettings.cfolder)
 	if progressBar then
 		progresstween(1)
 	end
@@ -234,8 +239,6 @@ function centrl:load()
 	task.wait(1)
 	end
 end
-
-centrl:load()
 
 -- setup in util
 centrl.util.ui            = centrllib
