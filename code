@@ -1,5 +1,7 @@
 -- vars --
 
+print('new ver')
+
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
 local https = 			game:GetService("HttpService")
@@ -232,6 +234,8 @@ function centrl:load()
 	task.wait(1)
 	end
 end
+
+centrl:load()
 
 -- setup in util
 centrl.util.ui            = centrllib
@@ -2156,6 +2160,6 @@ function centrl:init(library)
 	end
 	return lib
 end
-centrl:load()
+
 
 return centrl
