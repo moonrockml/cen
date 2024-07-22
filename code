@@ -1,6 +1,6 @@
 -- vars --
 
-print('newver 4')
+print('newver idk')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -156,93 +156,88 @@ end
 
 centrl.util.FolderName = 'centrl'
 
-do	
-	function centrl:load(setting)
-		local loader = loader
-		loader.Parent = coregui
-		local loaderframe = loader.Frame
-		local workText = loaderframe:FindFirstChild("work")
-		local progressBar = loaderframe.Bar:FindFirstChild("Barinner")
-		loaderframe.BackgroundTransparency = 1
-		loaderframe.Bar.BackgroundTransparency = 1
-		progressBar.BackgroundTransparency = 1
-		loaderframe.Shadow.Image.ImageTransparency = 1
-		loaderframe.ver.TextTransparency = 1
-		loaderframe.work.TextTransparency = 1
-		loaderframe.logo.ImageTransparency = 1
-		loaderframe.UIScale.Scale = 0.85
-		loaderframe.UIStroke.Transparency = 1
-
-		local uisettings = {
-			Cfolder = setting.Cfolder or centrl.util.FolderName
-		}
+do
+	
+function centrl:load()
+	local loader = loader
+	loader.Parent = coregui
+	local loaderframe = loader.Frame
+	local workText = loaderframe:FindFirstChild("work")
+	local progressBar = loaderframe.Bar:FindFirstChild("Barinner")
+	loaderframe.BackgroundTransparency = 1
+	loaderframe.Bar.BackgroundTransparency = 1
+	progressBar.BackgroundTransparency = 1
+	loaderframe.Shadow.Image.ImageTransparency = 1
+	loaderframe.ver.TextTransparency = 1
+	loaderframe.work.TextTransparency = 1
+	loaderframe.logo.ImageTransparency = 1
+	loaderframe.UIScale.Scale = 0.85
+	loaderframe.UIStroke.Transparency = 1
 
 
-		task.wait(3)
+	task.wait(3)
 
-		tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
-		tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
-		tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-		tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+	tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+	tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
+	tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
+	tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+	tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+	tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+	tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+	tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+	tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
 
 
 
-		local totalSteps = 4
+	local totalSteps = 4
 
-		local function progresstween(step)
-			progressBar:TweenSize(UDim2.new(step / totalSteps, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-		end
+	local function progresstween(step)
+		progressBar:TweenSize(UDim2.new(step / totalSteps, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+	end
 
-		-- Add files
-		workText.Text = 'Checking/Adding Files...'
-		print(uisettings.cfolder)
-		if progressBar then
-			progresstween(1)
-		end
-		task.wait(1)
+	-- Add files
+	workText.Text = 'Checking/Adding Files...'
+	if progressBar then
+		progresstween(1)
+	end
+	task.wait(1)
 
-		-- Check if in discord
-		workText.Text = 'Checking For Discord Server...'
-		if progressBar then
-			progresstween(2)
-		end
-		task.wait(1)
+	-- Check if in discord
+	workText.Text = 'Checking For Discord Server...'
+	if progressBar then
+		progresstween(2)
+	end
+	task.wait(1)
 
-		-- Secure?
-		workText.Text = 'Securing...'
-		if progressBar then
-			progresstween(3)
-		end
-		task.wait(1)
+	-- Secure?
+	workText.Text = 'Securing...'
+	if progressBar then
+		progresstween(3)
+	end
+	task.wait(1)
 
-		-- End
-		workText.Text = 'Loading UI...'
-		if progressBar then
-			progresstween(4)
-		end
-		task.wait(2) -- simulation
-		tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-		tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.85}):Play()
-		tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-		task.wait(0.4)
-		loader:Destroy()
-		task.wait(1)
+	-- End
+	workText.Text = 'Loading UI...'
+	if progressBar then
+		progresstween(4)
+	end
+	task.wait(2) -- simulation
+	tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+	tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+	tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.85}):Play()
+	tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+	tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+	tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+	tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+	tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+	tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+	task.wait(0.4)
+	loader:Destroy()
+	task.wait(1)
 	end
 end
 
 centrl:load()
-
 
 -- setup in util
 centrl.util.ui            = centrllib
@@ -2167,6 +2162,5 @@ function centrl:init(library)
 	end
 	return lib
 end
-
 
 return centrl
