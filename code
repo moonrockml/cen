@@ -158,7 +158,7 @@ centrl.util.FolderName = 'centrl'
 
 do
 	
-function centrl:load()
+function centrl:load(set)
 	local loader = loader
 	loader.Parent = coregui
 	local loaderframe = loader.Frame
@@ -176,6 +176,10 @@ function centrl:load()
 
 
 	task.wait(3)
+
+	local uiset = {
+   	  Cf = set.Cf or 'cent'
+	}
 
 	tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
 	tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
@@ -197,6 +201,7 @@ function centrl:load()
 
 	-- Add files
 	workText.Text = 'Checking/Adding Files...'
+	print(uiset.Cf)
 	if progressBar then
 		progresstween(1)
 	end
@@ -236,8 +241,6 @@ function centrl:load()
 	task.wait(1)
 	end
 end
-
-centrl:load()
 
 -- setup in util
 centrl.util.ui            = centrllib
