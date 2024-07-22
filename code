@@ -1,6 +1,6 @@
 -- vars --
 
-print('newver 3.3')
+print('newver 3.2')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -157,7 +157,7 @@ end
 centrl.util.FolderName = 'centrl'
 
 do	
-	function centrl.loadsettings(setting)
+	function centrl:load(setting)
 		local loader = loader
 		loader.Parent = coregui
 		local loaderframe = loader.Frame
