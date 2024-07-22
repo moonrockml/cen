@@ -152,6 +152,8 @@ function centrl.util.AddDrag(Object, Main, speed)
 	end)
 end
 
+do
+	
 function centrl:load()
 	local loader = loader
 	loader.Parent = coregui
@@ -228,6 +230,7 @@ function centrl:load()
 	task.wait(0.4)
 	loader:Destroy()
 	task.wait(1)
+	end
 end
 
 -- setup in util
