@@ -1,6 +1,6 @@
 -- vars --
 
-print('newverf')
+print('newver c')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -156,132 +156,937 @@ end
 
 centrl.util.FolderName = 'centrl'
 
-do	
-	function centrl:load(setting)
-		local loader = loader
-		loader.Parent = coregui
-		local loaderframe = loader.Frame
-		local workText = loaderframe:FindFirstChild("work")
-		local progressBar = loaderframe.Bar:FindFirstChild("Barinner")
-		loaderframe.BackgroundTransparency = 1
-		loaderframe.Bar.BackgroundTransparency = 1
-		progressBar.BackgroundTransparency = 1
-		loaderframe.Shadow.Image.ImageTransparency = 1
-		loaderframe.ver.TextTransparency = 1
-		loaderframe.work.TextTransparency = 1
-		loaderframe.logo.ImageTransparency = 1
-		loaderframe.UIScale.Scale = 0.85
-		loaderframe.UIStroke.Transparency = 1
+function run()
+	do	
+		function centrl:load(setting)
+			local loader = loader
+			loader.Parent = coregui
+			local loaderframe = loader.Frame
+			local workText = loaderframe:FindFirstChild("work")
+			local progressBar = loaderframe.Bar:FindFirstChild("Barinner")
+			loaderframe.BackgroundTransparency = 1
+			loaderframe.Bar.BackgroundTransparency = 1
+			progressBar.BackgroundTransparency = 1
+			loaderframe.Shadow.Image.ImageTransparency = 1
+			loaderframe.ver.TextTransparency = 1
+			loaderframe.work.TextTransparency = 1
+			loaderframe.logo.ImageTransparency = 1
+			loaderframe.UIScale.Scale = 0.85
+			loaderframe.UIStroke.Transparency = 1
 
-		local uisettings = {
-			Cfolder = setting.Cfolder or centrl.util.FolderName
-		}
-
-
-		task.wait(3)
-
-		tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
-		tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
-		tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-		tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+			local uisettings = {
+				Cfolder = setting.Cfolder or centrl.util.FolderName
+			}
 
 
+			task.wait(3)
 
-		local totalSteps = 4
+			tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+			tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
+			tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
+			tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+			tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+			tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+			tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+			tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+			tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
 
-		local function progresstween(step)
-			progressBar:TweenSize(UDim2.new(step / totalSteps, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+
+
+			local totalSteps = 4
+
+			local function progresstween(step)
+				progressBar:TweenSize(UDim2.new(step / totalSteps, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+			end
+
+			-- Add files
+			workText.Text = 'Checking/Adding Files...'
+			print(uisettings.cfolder)
+			if progressBar then
+				progresstween(1)
+			end
+			task.wait(1)
+
+			-- Check if in discord
+			workText.Text = 'Checking For Discord Server...'
+			if progressBar then
+				progresstween(2)
+			end
+			task.wait(1)
+
+			-- Secure?
+			workText.Text = 'Securing...'
+			if progressBar then
+				progresstween(3)
+			end
+			task.wait(1)
+
+			-- End
+			workText.Text = 'Loading UI...'
+			if progressBar then
+				progresstween(4)
+			end
+			task.wait(2) -- simulation
+			tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+			tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+			tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.85}):Play()
+			tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+			tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+			tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+			tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+			tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+			task.wait(0.4)
+			loader:Destroy()
+			wait(1)
 		end
-
-		-- Add files
-		workText.Text = 'Checking/Adding Files...'
-		print(uisettings.cfolder)
-		if progressBar then
-			progresstween(1)
-		end
-		task.wait(1)
-
-		-- Check if in discord
-		workText.Text = 'Checking For Discord Server...'
-		if progressBar then
-			progresstween(2)
-		end
-		task.wait(1)
-
-		-- Secure?
-		workText.Text = 'Securing...'
-		if progressBar then
-			progresstween(3)
-		end
-		task.wait(1)
-
-		-- End
-		workText.Text = 'Loading UI...'
-		if progressBar then
-			progresstween(4)
-		end
-		task.wait(2) -- simulation
-		tweenservice:Create(loaderframe, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-		tweenservice:Create(loaderframe.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.85}):Play()
-		tweenservice:Create(loaderframe.Bar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		tweenservice:Create(progressBar, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.Shadow.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.ver, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.work, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-		tweenservice:Create(loaderframe.logo, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-		task.wait(0.4)
-		loader:Destroy()
-		wait(1)
 	end
 end
 
 
-
+run()
 wait()
 
+-- setup in util
+centrl.util.ui            = centrllib
+centrl.util.window        = centrl.util.ui.library
+centrl.util.topbar        = centrl.util.window.top
+centrl.util.tabholder     = centrl.util.window.tabhlder.tbls
+centrl.util.pageholder    = centrl.util.window.pages
+
+-- setup local
+local ui                  = centrl.util.ui
+local window              = centrl.util.window
+local topbar              = centrl.util.topbar
+local tabholder           = centrl.util.tabholder
+local pageholder          = centrl.util.pageholder
+local settingopen         = false
+ui.Parent = coregui
+
+-- remove placeholders
+centrl.util.removeplaceholder(centrl.util.tabholder, 'tbbtn')
+centrl.util.removeplaceholder(centrl.util.pageholder, 'page')
+centrl.util.removeplaceholder(centrl.util.pageholder.page.L, 'section')
+centrl.util.removeplaceholder(window.sublib.settfr.ScrollingFrame, 'section')
+
+--- == //SETTINGS\\ == --- lazy code could make it more advanced mabe in the future
 do
 
-	-- setup in util
-	centrl.util.ui            = centrllib
-	centrl.util.window        = centrl.util.ui.library
-	centrl.util.topbar        = centrl.util.window.top
-	centrl.util.tabholder     = centrl.util.window.tabhlder.tbls
-	centrl.util.pageholder    = centrl.util.window.pages
+	local librarysettings = {}
 
-	-- setup local
-	local ui                  = centrl.util.ui
-	local window              = centrl.util.window
-	local topbar              = centrl.util.topbar
-	local tabholder           = centrl.util.tabholder
-	local pageholder          = centrl.util.pageholder
-	local settingopen         = false
-	ui.Parent = coregui
+	function librarysettings:initsection(Name)
+		local getelements = {}
 
-	-- remove placeholders
-	centrl.util.removeplaceholder(centrl.util.tabholder, 'tbbtn')
-	centrl.util.removeplaceholder(centrl.util.pageholder, 'page')
-	centrl.util.removeplaceholder(centrl.util.pageholder.page.L, 'section')
-	centrl.util.removeplaceholder(window.sublib.settfr.ScrollingFrame, 'section')
+		local section = window.sublib.settfr.ScrollingFrame.section:Clone()
+		section.Visible = true
+		section.Parent = window.sublib.settfr.ScrollingFrame
 
-	--- == //SETTINGS\\ == --- lazy code could make it more advanced mabe in the future
-	do
+		section.Title.Text = Name
 
-		local librarysettings = {}
+		local function resize()
+			section.Container.UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+				section:TweenSize(UDim2.new(1,0,0,section.Container.UIListLayout.AbsoluteContentSize.Y + 50), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+			end)
+		end
+		resize()
 
-		function librarysettings:initsection(Name)
-			local getelements = {}
 
-			local section = window.sublib.settfr.ScrollingFrame.section:Clone()
+		for _, ph in ipairs(section.Container:GetChildren()) do
+			if ph:IsA("Frame") then
+				ph:Destroy()
+			end
+		end
+
+		function getelements:createcolorpicker(pickerdata)
+			local pickdata = {
+				Title = pickerdata.Title or 'colorpicker',
+				Color = pickerdata.Color,
+				Callback = pickerdata.Callback,
+			}
+
+			local colorpicker = window.sublib.settfr.ScrollingFrame.section.Container.colorpicker:Clone()
+			colorpicker.Visible = true
+			colorpicker.Parent = section.Container
+			colorpicker.title.Text = pickdata.Title
+			colorpicker.Name = pickdata.Title
+
+			local open = false
+			local bounce = false
+
+			local function openpicker()
+				open = true
+				bounce = true
+				colorpicker:TweenSize(UDim2.new(1, -20,0, 170), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
+				wait(0.5)
+				colorpicker.container.Visible = true
+				bounce = false
+			end
+
+			local function hidepicker()
+				open = false
+				bounce = true
+				colorpicker:TweenSize(UDim2.new(1, -20,0, 28), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.4, true)
+				wait(0.4)
+				bounce = false
+			end
+
+			colorpicker.setcolor.MouseButton1Click:Connect(function()
+				if bounce then return end
+				if not open then
+					open = true
+					openpicker()
+				else
+					open = false
+					hidepicker()
+				end
+			end)
+
+			local hsv
+
+			if pickdata.Color then
+				hsv = { pickdata.Color:ToHSV() }
+			else
+				-- Handle the case where pickdata.Color is nil (e.g., use a default color)
+				hsv = { 0, 0, 0 } -- Replace with your desired default HSV values
+			end
+			local selected = pickdata.Color
+			local hueValue = hsv[1]
+
+			local function TableToColor(Table)
+				if type(Table) ~= "table" then return Table end
+				return Color3.fromHSV(Table[1],Table[2],Table[3])
+			end
+
+			local function FormatColor(Color, format, precision)
+				-- Default to RGB format with two decimal places precision
+				format = format or "RGB"
+				precision = precision or 2
+
+				local formattedColor = ""
+
+				if format == "RGB" then
+					return	math.round(Color.R * 255) .. "," .. math.round(Color.G * 255) .. "," .. math.round(Color.B * 255)
+				elseif format == "Hex" then
+					formattedColor = string.format("#%02X%02X%02X",
+						math.round(Color.R * 255),
+						math.round(Color.G * 255),
+						math.round(Color.B * 255)
+					)
+					-- Add more format options as needed
+
+					return formattedColor
+				end
+			end
+
+			local svpicker = colorpicker.container.SVPicker
+			local hueslider = colorpicker.container.Hue
+
+			local function updatestuff()
+				pickdata.Color = TableToColor(hsv)
+				colorpicker.setcolor.BackgroundColor3 = pickdata.Color  -- Change 'selectedcolor' to 'pickdata.Color'
+				svpicker.BackgroundColor3 = Color3.fromHSV(hsv[1], 1, 1)
+
+				tweenservice:Create(svpicker.Pin, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+					Position = UDim2.new(hsv[2], 0, 1 - hsv[3], 0)
+				}):Play()
+
+				tweenservice:Create(hueslider.Pin, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+					Position = UDim2.new(1 - hsv[1], 0, 0.5, 0)
+				}):Play()
+
+
+				local formattedHex = FormatColor(pickdata.Color, 'Hex')
+				colorpicker.container.HEX.HEXBox.Text = formattedHex
+
+
+
+				local formattedRGB = FormatColor(pickdata.Color,'RGB', 2)
+				colorpicker.container.RGB.RGBBox.Text = formattedRGB
+
+
+				if pickdata.Callback then
+					pickdata.Callback(pickdata.Color)  -- Change 'selectedcolor' to 'pickdata.Color'
+				end
+			end
+
+			updatestuff()
+
+			local sv, hue = nil, nil
+
+			centrl.util.AddConnection(svpicker.InputBegan, function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					sv = runservice.RenderStepped:Connect(function()
+						local pos = svpicker.AbsolutePosition
+						local mouse = game.Players.LocalPlayer:GetMouse()
+						local size = svpicker.AbsoluteSize
+						local ColorX = math.clamp(mouse.X - svpicker.AbsolutePosition.X,0,svpicker.AbsoluteSize.X) /svpicker.AbsoluteSize.X
+						svpicker.Pin:TweenSize(UDim2.new(0, 25,0, 25), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
+						local ColorY = math.clamp(mouse.Y - (svpicker.AbsolutePosition.Y + 0),0,svpicker.AbsoluteSize.Y) / svpicker.AbsoluteSize.Y
+						hsv[2] = ColorX
+						hsv[3] = 1 - ColorY
+						-- Change 'selectedcolor' to 'pickdata.Color'
+						updatestuff()
+					end)
+				end
+			end)
+
+			centrl.util.AddConnection(svpicker.InputEnded, function(i)
+				if i.UserInputType == Enum.UserInputType.MouseButton1 then
+					if sv then
+						svpicker.Pin:TweenSize(UDim2.new(0, 10,0, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.3, true)
+						sv:Disconnect()
+					end
+				end
+			end)
+
+			centrl.util.AddConnection(hueslider.InputBegan, function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					hue = runservice.RenderStepped:Connect(function()
+						local Mouse = game.Players.LocalPlayer:GetMouse()
+						hueslider.Pin:TweenSize(UDim2.new(0, 23,0, 23), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
+						local ColorX = math.clamp(Mouse.X - hueslider.AbsolutePosition.X, 0, hueslider.AbsoluteSize.X) / hueslider.AbsoluteSize.X
+						hsv[1] = 1 - ColorX
+						updatestuff()
+					end)
+				end
+			end)
+
+			centrl.util.AddConnection(hueslider.InputEnded, function(i)
+				if i.UserInputType == Enum.UserInputType.MouseButton1 then
+					if hue then
+						hueslider.Pin:TweenSize(UDim2.new(0, 10,0, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.3, true)
+						hue:Disconnect()
+					end
+				end
+			end)
+
+			local hueIncrement = 0.005 -- Adjust this value to control the speed of the rainbow effect
+
+			-- Function to continuously update the hue and apply the rainbow effect
+			local function RainbowEffect()
+				hueValue = (hueValue + hueIncrement) % 1
+				hsv[1] = hueValue
+
+				updatestuff()
+			end
+
+			local isRainbowEnabled = false
+			local huerender = nil -- Initialize huerender outside the functions to make it accessible from both functions
+
+			-- Function to handle the rainbow effect toggle
+			local function ToggleRainbowEffect()
+				isRainbowEnabled = not isRainbowEnabled
+				if isRainbowEnabled then
+					if not huerender then
+						huerender = runservice.RenderStepped:Connect(RainbowEffect)
+						tweenservice:Create(colorpicker.container.Rainbow.Tick, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Hitbox}):Play()
+					end
+				else
+					if huerender then
+						huerender:Disconnect()
+						tweenservice:Create(colorpicker.container.Rainbow.Tick, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(30, 30, 30)}):Play()
+						huerender = nil -- Reset the huerender variable to nil when turning off the rainbow effect
+					end
+				end
+			end
+
+			colorpicker.container.Rainbow.MouseButton1Click:Connect(ToggleRainbowEffect)
+
+			colorpicker.container.HEX.HEXBox.FocusLost:Connect(function(Enter)
+				if not Enter then return end
+				local Hue,Saturation,Value = Color3.fromHex("#" .. colorpicker.container.HEX.HEXBox.Text):ToHSV()
+				colorpicker.container.RGB.RGBBox.Text = ""
+				hsv[1] = Hue
+				hsv[2] = Saturation
+				hsv[3] = Value
+				updatestuff()
+			end)
+
+			return pickdata
+
+		end
+
+
+		function getelements:createtoggle(toggledata)
+			local tog = {
+				Title = toggledata.Title or 'Toggle';
+				Callback = toggledata.Callback;
+				Value = toggledata.Value or false;
+			}
+
+			local toggle = window.sublib.settfr.ScrollingFrame.section.Container.toggle:Clone()
+			toggle.Visible = true
+			toggle.Parent = section.Container
+			toggle.title.Text = tog.Title
+			toggle.Name = tog.Title
+
+			if not tog.Value then
+				toggle.tog.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+				toggle.title.TextTransparency = 0.6
+				toggle.tog.check.ImageTransparency = 1
+				toggle.tog.check.Visible = false
+				toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 4), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
+				toggle.tog.gradfr.BackgroundTransparency = 1
+			else
+				toggle.tog.BackgroundColor3 = centrl.theme.Hitbox
+				toggle.title.TextTransparency = 0
+				toggle.tog.check.ImageTransparency = 0.3
+				toggle.tog.check.Visible = true
+				toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
+				toggle.tog.gradfr.BackgroundTransparency = 0
+			end
+
+			local function toggleInteract()
+				tog.Value = not tog.Value
+				if tog.Value then
+					tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+					tweenservice:Create(toggle.tog, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Hitbox}):Play()
+					tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					toggle.tog.check.Visible = true
+					tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
+					tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.3}):Play()
+					toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+				else
+					tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.6}):Play()
+					tweenservice:Create(toggle.tog, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(20, 20, 20)}):Play()
+					tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+					tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.3}):Play()
+					toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+					tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				end
+
+				local scriptwork, Responderror = pcall(function()
+					tog.Callback(tog.Value)
+				end)
+
+				if not scriptwork then
+					print("error in ["..toggle.Name.."], " .. tostring(Responderror))
+				end
+			end
+
+			toggle.interact.MouseButton1Click:Connect(toggleInteract)
+
+			centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+				if p == 'Hitbox' then
+					if tog.Value then
+						toggle.tog.BackgroundColor3 = color
+					end
+				end
+			end)
+
+			return tog
+
+		end
+
+		function getelements:create_textinput(textidata)
+
+			local textinputdata = {
+				Title = textidata.Title or 'Textinput',
+				Placeholder = textidata.Placeholder or 'Discord T0ken here.',
+				Clearonlost = textidata.Clearonlost or false,
+				Callback = textidata.Callback
+			}
+
+			local textinput = window.sublib.settfr.ScrollingFrame.section.Container.textinput:Clone()
+			-- vars
+			textinput.Visible = true
+			textinput.Parent = section.Container
+			textinput.title.Text = textinputdata.Title
+			textinput.Name = textinputdata.Title
+			textinput.inputbox.TextLabel.Text = textinputdata.Placeholder
+			textinput.inputbox.TextLabel.BackgroundColor3 = Color3.fromRGB(117, 117, 117)
+
+			textinput.inputbox.TextBox.FocusLost:Connect(function(enter)
+				if not enter then return end
+				local scriptwork, Responderror = pcall(function()
+					textinputdata.Callback(textinput.inputbox.TextBox.Text)
+				end)
+				if textinputdata.Clearonlost then
+					textinput.inputbox.TextBox.Text = ''
+				end
+				if not scriptwork then
+					print("error ["..textinput.Name.."], " .. tostring(Responderror))
+				end
+			end)
+
+			textinput.inputbox.submit.MouseButton1Click:Connect(function()
+				local scriptwork, Responderror = pcall(function()
+					textinputdata.Callback(textinput.inputbox.TextBox.Text)
+				end)
+				if textinputdata.Clearonlost then
+					textinput.inputbox.TextBox.Text = ''
+				end
+				if not scriptwork then
+					print("error ["..textinput.Name.."], " .. tostring(Responderror))
+				end
+			end)
+
+			local frame = textinput.inputbox
+			local textBox = frame:WaitForChild("TextBox")
+			local cursor = frame:WaitForChild("ImageLabel")
+			local textLabel = frame:WaitForChild("TextLabel") -- Make sure you add a TextLabel under the same frame in the GUI
+
+			-- Set initial properties
+			cursor.Visible = false
+			cursor.AnchorPoint = Vector2.new(0, 0.5)
+			textLabel.AnchorPoint = Vector2.new(0, 0.5)
+			textLabel.Position = UDim2.new(0, 0, 0.5, 0)
+
+			-- Function to update cursor and text label positions
+			local function updateCursorPosition()
+				local caretPosition = textBox.CursorPosition - 1
+				if caretPosition < 0 then caretPosition = 0 end
+
+				local textUpToCaret = string.sub(textBox.Text, 1, caretPosition)
+				local textSize = textservice:GetTextSize(textUpToCaret, textBox.TextSize, textBox.Font, Vector2.new(math.huge, textBox.AbsoluteSize.Y))
+
+				-- Calculate the cursor position relative to the TextBox size
+				local cursorXPosition = math.min(textSize.X, textBox.AbsoluteSize.X - 1) -- Ensure the cursor stays within the TextBox boundaries
+				local newPosition = UDim2.new(0, cursorXPosition + 11, 0.5, 0)
+
+				local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+				local tween = tweenservice:Create(cursor, tweenInfo, {Position = newPosition})
+				tween:Play()
+
+				-- Update the text label position and text
+				textLabel.Text = textBox.Text
+				textLabel.Position = UDim2.new(0, 0, 0.5, 0)
+			end
+
+			-- Handle TextBox input and caret position changes
+			textBox:GetPropertyChangedSignal("Text"):Connect(updateCursorPosition)
+			textBox:GetPropertyChangedSignal("CursorPosition"):Connect(updateCursorPosition)
+
+			-- Show the cursor when the TextBox is focused
+			textBox.Focused:Connect(function()
+				cursor.Visible = true
+				tweenservice:Create(cursor, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+				tweenservice:Create(textLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+				updateCursorPosition()
+			end)
+
+			-- Hide the cursor when the TextBox is not focused
+			textBox.FocusLost:Connect(function()
+				tweenservice:Create(cursor, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				if textinputdata.Clearonlost then
+					textLabel.Text = textinputdata.Placeholder
+					tweenservice:Create(textLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(117, 117, 117)}):Play()
+				else
+					textLabel.Text = textBox.Text
+				end
+				task.wait(0.3)
+				cursor.Visible = false
+			end)
+
+			-- Ensure the cursor updates if the user clicks to change position
+			userinput.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 and textBox:IsFocused() then
+					wait() -- Allow the caret position to update
+					updateCursorPosition()
+				end
+			end)
+
+			-- Ensure the cursor updates if the user types or deletes text
+			textBox.Changed:Connect(function(property)
+				if property == "Text" or property == "CursorPosition" then
+					updateCursorPosition()
+				end
+			end)
+
+			return textinputdata
+
+		end
+
+		function getelements:createslider(sliderdata)
+			local slidedata = {
+				Title = sliderdata.Title or 'Slider';
+				Sliders = sliderdata.Sliders
+			}
+
+			local slider =  window.sublib.settfr.ScrollingFrame.section.Container.slider:Clone()
+			slider.Visible = true
+			slider.Parent = section.Container
+			slider.title.Text = slidedata.Title
+			slider.Name = slidedata.Title
+			slider.slidelist.slideholder.Visible = false
+
+			for i, options in pairs(slidedata.Sliders) do
+				local slideme = pageholder.page.L.section.Container.slider.slidelist.slideholder:Clone()
+
+				options = {
+					title = options.title or 'slide',
+					increment = options.increment or 1,
+					range = options.range or {0,100},
+					startvalue = options.startvalue or 16,
+					callback = options.callback,
+				}
+
+				local slidedata = {
+					dragging = false
+				}
+
+				-- vars
+				slideme.Visible = true
+				slideme.Parent = slider.slidelist
+				slideme.sliderframe.suffix.Text = options.title or slideme.sliderframe.suffix:Destroy()
+
+				local sliderPosition
+				if options.startvalue <= options.range[1] then
+					sliderPosition = 0
+				elseif options.startvalue >= options.range[2] then
+					sliderPosition = 1
+				else
+					local range = options.range[2] - options.range[1]
+					sliderPosition = (options.startvalue - options.range[1]) / range
+				end
+
+				slideme.sliderframe.slide.Size = UDim2.new(sliderPosition, 0, 1, 0)
+				slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(options.startvalue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
+
+				local function UpdateSlider(x)
+					if slidedata.dragging then
+						local sliderPosition = (x - slideme.sliderframe.AbsolutePosition.X) / slideme.sliderframe.AbsoluteSize.X
+						sliderPosition = math.clamp(sliderPosition, 0, 1) -- Clamp the value between 0 and 1
+
+						local range = options.range[2] - options.range[1]
+						local newValue = options.range[1] + sliderPosition * range
+
+						-- Calculate the rounded value based on the increment
+						newValue = math.floor((newValue - options.range[1]) / options.increment + 0.5) * options.increment + options.range[1]
+
+						slideme.sliderframe.slide:TweenSize(UDim2.new(sliderPosition, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.2, true)
+						slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(newValue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
+						local scriptwork, Responderror = pcall(function()
+							options.callback(newValue)
+						end)
+						if not scriptwork then
+							print("error in ["..slideme.Name.."], " .. tostring(Responderror))
+						end
+					end
+				end
+
+
+				slideme.sliderframe.interact.MouseButton1Down:Connect(function(x)
+					slidedata.dragging = true
+					UpdateSlider(x)
+					tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+				end)
+
+				slideme.sliderframe.interact.MouseButton1Up:Connect(function()
+					slidedata.dragging = false
+
+				end)
+
+				centrl.util.AddConnection(userinput.InputEnded, function(input, processed)
+					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						slidedata.dragging = false
+						tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.64}):Play()
+					end
+				end)
+
+				centrl.util.AddConnection(userinput.InputChanged, function(input)
+					if slidedata.dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+						UpdateSlider(input.Position.X)
+					end
+				end)
+
+				slideme.sliderframe.slide.BackgroundColor3 = centrl.theme.Hitbox
+
+				centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+					if p == 'Hitbox' then
+						slideme.sliderframe.slide.BackgroundColor3 = color
+					end
+				end)
+
+			end
+
+			slider.slidelist.Size = UDim2.new(1,0,0,slider.slidelist.UIListLayout.AbsoluteContentSize.Y)
+			slider.Size = UDim2.new(1,-20,0,slider.slidelist.AbsoluteSize.Y + 28)
+
+			return slidedata
+
+		end
+
+		return getelements
+
+	end
+
+	local theme = librarysettings:initsection('THEME')
+	local Privacy = librarysettings:initsection('PRIVACY')
+
+	-- theme --
+
+	theme:createcolorpicker({
+		Title = 'Accent';
+		Color = centrl.theme.Accent;
+		Callback = function(c)
+			centrl:UpdateTheme({
+				['Accent'] = c
+			})
+		end,
+	})
+
+	theme:createcolorpicker({
+		Title = 'Hitbox';
+		Color = centrl.theme.Hitbox;
+		Callback = function(c)
+			centrl:UpdateTheme({
+				['Hitbox'] = c
+			})
+		end,
+	})
+
+	theme:createcolorpicker({
+		Title = 'Glow';
+		Color = centrl.theme.Glow;
+		Callback = function(c)
+			centrl:UpdateTheme({
+				['Glow'] = c
+			})
+		end,
+	})
+
+	theme:createslider({
+		Title = 'Glow';
+		Sliders = {
+			{
+				title = 'Density',
+				range = {0,1},
+				increment = 0.1,
+				startvalue = 0,
+				callback = function(lol)
+
+					window.Shadow.Image.ImageTransparency = lol
+
+				end,
+			}
+		}
+
+	})
+
+	theme:create_textinput({
+		Title = 'Wallpaper',
+		Placeholder = 'Enter Roblox Image ID',
+		Clearonlost = false,
+		Callback = function(w)
+			window.ImageLabel.Image = 'rbxassetid://'..w
+			print(w)
+		end,
+	})
+
+
+	--  --
+
+	-- privacy --
+	Privacy:createtoggle({
+		Title = 'Toggle Profile Viewer';
+		Value = false;
+		Callback = function(v)
+			if v then
+				window.profile.Visible = false
+				window.tabhlder:TweenSize(UDim2.new(0, 170,1, -40), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+				task.wait(0.1)
+				window.profile.Visible = false
+			else
+				window.profile.Visible = true
+				window.tabhlder:TweenSize(UDim2.new(0, 170,1, -140), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+			end
+		end,
+	})
+	--  --
+
+end
+
+---\\ ----------------- // ---
+
+
+function centrl:init(library)
+	local lib = {
+		first = false,
+		selected = false
+	}
+
+	local librarydata = {
+		title = library.Title or 'Centrl.cc';
+		creet = library.text
+	}
+
+	_G.Dizzy = librarydata.creet
+
+	centrl.util.AddDrag(topbar, window, 0.2)
+	centrl.util.MakeResizeable(window.resize, window, Vector2.new(654,428))
+	ui.Enabled = true
+
+	topbar.title.Text = librarydata.title
+
+	topbar.clsfr.MouseEnter:Connect(function()
+		tweenservice:Create(topbar.clsfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.4}):Play()
+	end)
+
+	topbar.clsfr.MouseLeave:Connect(function()
+		tweenservice:Create(topbar.clsfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+	end)
+
+	topbar.setfr.MouseEnter:Connect(function()
+		tweenservice:Create(topbar.setfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.4}):Play()
+	end)
+
+	topbar.setfr.MouseLeave:Connect(function()
+		tweenservice:Create(topbar.setfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+	end)
+
+	local debounce = false
+
+	topbar.setfr.settings.MouseButton1Click:Connect(function()
+		if debounce then return end
+		debounce = true
+
+		if not settingopen then
+			settingopen = true
+			window.sublib.settfr.Visible = true
+			window.sublib.settfr:TweenPosition(UDim2.new(1, -330, 0, 48), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
+			tweenservice:Create(window.sublib, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.55}):Play()
+		else
+			settingopen = false
+			window.sublib.settfr:TweenPosition(UDim2.new(1, 0, 0, 48), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
+			tweenservice:Create(window.sublib, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+			task.wait(0.4)
+			window.sublib.settfr.Visible = false
+		end
+
+		task.delay(0.5, function() -- Adjust the delay time as needed
+			debounce = false
+		end)
+	end)
+
+	-- theme/preload
+
+	topbar.div.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, centrl.theme.Accent), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 20, 20))}
+
+	centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+		if p == 'Accent' then
+			topbar.div.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, color), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 20, 20))}
+		elseif p == 'Glow' then
+			window.Shadow.Image.ImageColor3 = color
+		end
+	end)
+
+	function lib:createtab(tbtitle)
+		local sectioninit = {}
+		local tab = tabholder.tbbtn:Clone()
+		tab.Visible = true
+		tab.Parent = tabholder
+		tab.title.Text = tbtitle
+		tab.Name = tbtitle
+
+		local page = pageholder.page:Clone()
+		page.Visible = false
+		page.Parent = pageholder
+		page.Name = tbtitle
+
+		for _, ph in ipairs(page.L.section.Container:GetChildren()) do
+			if ph:IsA("Frame") then
+				ph:Destroy()
+			end
+		end
+
+		page.L.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+			if page.L.ListLayout.AbsoluteContentSize.Y > page.R.ListLayout.AbsoluteContentSize.Y then
+				page.CanvasSize = UDim2.new(0,0,0,page.L.ListLayout.AbsoluteContentSize.Y + 20)
+			else
+				page.CanvasSize = UDim2.new(0,0,0,page.R.ListLayout.AbsoluteContentSize.Y + 20)
+			end
+		end)
+
+		page.R.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+			if page.R.ListLayout.AbsoluteContentSize.Y > page.L.ListLayout.AbsoluteContentSize.Y then
+				page.CanvasSize = UDim2.new(0,0,0,page.R.ListLayout.AbsoluteContentSize.Y + 20)
+			else
+				page.CanvasSize = UDim2.new(0,0,0,page.L.ListLayout.AbsoluteContentSize.Y + 20)
+			end
+		end)
+
+		local function UpdateTabButtonColors(selectedTabButton)
+			for _, tabbutton in ipairs(tabholder:GetChildren()) do
+				if tabbutton:IsA("TextButton") then
+					if tabbutton == selectedTabButton then
+						tweenservice:Create(tabbutton.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+						tweenservice:Create(tabbutton.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Accent}):Play()
+						--	tweenservice:Create(tabbutton.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+						tweenservice:Create(tabbutton, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Accent}):Play()
+						tweenservice:Create(tabbutton, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.8}):Play()
+						tabbutton.title:TweenPosition(UDim2.new(0, 15,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+						tweenservice:Create(tabbutton.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+
+					else
+						tweenservice:Create(tabbutton.title, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.81}):Play()
+						tweenservice:Create(tabbutton.indicator, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(47, 47, 47)}):Play()
+						tweenservice:Create(tabbutton, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+						tabbutton.title:TweenPosition(UDim2.new(0, 8,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+					end
+				end
+			end
+		end
+
+		if not lib.first then
+			page.Visible = true
+		end
+
+		if lib.first then
+			tab.title.TextTransparency = 0.81
+			tab.title:TweenPosition(UDim2.new(0, 8,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+			tab.indicator.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+			tweenservice:Create(tab, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+		else
+			lib.first = tbtitle
+			tab.title.TextColor3 = Color3.fromRGB(255, 255, 255)
+			tab.title:TweenPosition(UDim2.new(0, 10,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+			tab.BackgroundColor3 = centrl.theme.Accent
+			tab.indicator.BackgroundColor3 = centrl.theme.Accent
+			tweenservice:Create(tab, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.8}):Play()
+		end
+
+
+		tab.MouseButton1Click:Connect(function()
+			for _, otherpages in ipairs(pageholder:GetChildren()) do
+				if otherpages:IsA("ScrollingFrame") then
+					otherpages.Visible = false
+				end
+				page.Visible = true
+			end
+			lib.first = tbtitle
+			UpdateTabButtonColors(tab)
+		end)
+
+		-- theme / preload
+
+		centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+			if p == 'Tab Unselected' or 'Tab Selected' then
+				local selectedTabButton = tabholder:FindFirstChild(lib.first)
+				if selectedTabButton and selectedTabButton:IsA("TextButton") then
+					UpdateTabButtonColors(selectedTabButton)
+				end
+			end
+		end)
+
+
+		function sectioninit:createsection(sectitle, secdata)
+			local sectiondata = {
+				side = secdata.side or centrl.util.GetSide(#page.L:GetChildren(), #page.R:GetChildren())
+			}
+			local sectionelement = {}
+
+			local section = page.L.section:Clone()
 			section.Visible = true
-			section.Parent = window.sublib.settfr.ScrollingFrame
+			section.Parent =  page[sectiondata.side]
+			section.titlefr.title.Text = sectitle
+			section.Name = sectitle
 
-			section.Title.Text = Name
+			for _, ph in ipairs(section.Container:GetChildren()) do
+				if ph:IsA("Frame") then
+					ph:Destroy()
+				end
+			end
 
 			local function resize()
 				section.Container.UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
@@ -290,28 +1095,588 @@ do
 			end
 			resize()
 
+			-- theme/pre load
+			section.titlefr.div.BackgroundColor3 = centrl.theme.Accent
 
-			for _, ph in ipairs(section.Container:GetChildren()) do
-				if ph:IsA("Frame") then
-					ph:Destroy()
+			centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+				if p == 'Accent' then
+					section.titlefr.div.BackgroundColor3 = color
 				end
+			end)
+
+			function sectionelement:createbutton(buttondata)
+				local btn = {
+					Title = buttondata.Title or 'Button';
+					Callback = buttondata.Callback;
+				}
+
+				local button = pageholder.page.L.section.Container.button:Clone()
+				button.Visible = true
+				button.Parent = section.Container
+				button.title.Text = btn.Title
+				button.Name = btn.Title
+
+				button.interact.MouseButton1Click:Connect(function()
+					local scriptwork, Responderror = pcall(function()
+						btn.Callback(btn.Callback)
+					end)
+					if not scriptwork then
+						print("error ["..button.Name.."], " .. tostring(Responderror))
+					end
+				end)
+
+				button.MouseEnter:Connect(function()
+					tweenservice:Create(button.Frame.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+				end)
+				button.MouseLeave:Connect(function()
+					tweenservice:Create(button.Frame.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.7}):Play()
+				end)
+
 			end
 
-			function getelements:createcolorpicker(pickerdata)
+			function sectionelement:createtoggle(toggledata)
+				local tog = {
+					Title = toggledata.Title or 'Toggle';
+					Callback = toggledata.Callback;
+					Value = toggledata.Value or false;
+					Config = toggledata.Config or false;
+				}
+
+				local toggle = pageholder.page.L.section.Container.toggle:Clone()
+				toggle.Visible = true
+				toggle.Parent = section.Container
+				toggle.title.Text = tog.Title
+				toggle.Name = tog.Title
+
+				local toggleconfig = ui.togconfig:Clone()
+				toggleconfig.Visible = false
+				toggleconfig.Parent = ui.renders
+
+
+				if not tog.Config then
+					toggle.config:Destroy()
+				end
+
+				-- preload (just used close function)
+				tweenservice:Create(toggleconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.Bind.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.Bind.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.Reset.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+				tweenservice:Create(toggleconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+				tweenservice:Create(toggleconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.5}):Play()
+
+				if not tog.Value then
+					toggle.tog.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+					toggle.title.TextTransparency = 0.6
+					toggle.tog.check.ImageTransparency = 1
+					toggle.tog.check.Visible = false
+					toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 4), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
+					toggle.tog.gradfr.BackgroundTransparency = 1
+				else
+					toggle.tog.BackgroundColor3 = centrl.theme.Hitbox
+					toggle.title.TextTransparency = 0
+					toggle.tog.check.ImageTransparency = 0.3
+					toggle.tog.check.Visible = true
+					toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
+					toggle.tog.gradfr.BackgroundTransparency = 0
+				end
+
+				local function toggleInteract()
+					tog.Value = not tog.Value
+					if tog.Value then
+						tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+						tweenservice:Create(toggle.tog, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Hitbox}):Play()
+						tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+						toggle.tog.check.Visible = true
+						tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
+						tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.3}):Play()
+						toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+					else
+						tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.6}):Play()
+						tweenservice:Create(toggle.tog, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(20, 20, 20)}):Play()
+						tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+						tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.3}):Play()
+						toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+						tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+					end
+
+					local scriptwork, Responderror = pcall(function()
+						tog.Callback(tog.Value)
+					end)
+
+					if not scriptwork then
+						print("error in ["..toggle.Name.."], " .. tostring(Responderror))
+					end
+				end
+
+				toggle.interact.MouseButton1Click:Connect(toggleInteract)
+
+				if tog.Config then
+
+					toggle.config.MouseEnter:Connect(function()
+						tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+						tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+						tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 50}):Play()
+					end)
+
+					toggle.config.MouseLeave:Connect(function()
+						tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(63, 63, 63)}):Play()
+						tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.61}):Play()
+						tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
+					end)
+
+					local function togopen()
+						toggleconfig.Visible = true
+						tweenservice:Create(toggleconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+						tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
+						tweenservice:Create(toggleconfig.Bind.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+						tweenservice:Create(toggleconfig.Bind.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+						tweenservice:Create(toggleconfig.Reset.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+						tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+						tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+						tweenservice:Create(toggleconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
+						tweenservice:Create(toggleconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
+					end
+
+					local function togclose()
+						tweenservice:Create(toggleconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.Bind.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.Bind.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.Reset.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+						tweenservice:Create(toggleconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+						tweenservice:Create(toggleconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.5}):Play()
+						task.wait(0.3)
+						toggleconfig.Visible = false
+						toggleconfig:TweenPosition(UDim2.new(0,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
+					end
+
+					local togconfig
+
+					local debounce1 = false
+
+					local function tglconfig()
+						if debounce1 then return end
+						debounce1 = true
+
+						if not toggleconfig.Visible then
+							togconfig = runservice.RenderStepped:Connect(function()
+								toggleconfig:TweenPosition(UDim2.new(0,toggle.config.AbsolutePosition.X,0,toggle.config.AbsolutePosition.Y + toggle.config.AbsoluteSize.Y + 5), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
+								if not toggleconfig.Visible then
+									togconfig:Disconnect()
+								end
+							end)
+							togopen()
+						else
+							if togconfig then togconfig:Disconnect() end
+							togclose()
+						end
+
+						-- Debounce reset after a short delay
+						task.delay(0.4, function()
+							debounce1 = false
+						end)
+					end
+
+					toggle.config.MouseButton1Click:Connect(function()
+						tglconfig()
+					end)
+
+					local function setKeybind(key)
+
+						if key == nil then
+							toggleconfig.Bind.BindFrame.a.Text = 'None'
+							tog.Keybind = nil
+						else
+							tog.Keybind = key
+							toggleconfig.Bind.BindFrame.a.Text = key.Name
+						end
+					end
+
+					toggleconfig.Bind.MouseEnter:Connect(function()
+						tweenservice:Create(toggleconfig.Bind, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
+					end)
+
+
+					toggleconfig.Bind.MouseLeave:Connect(function()
+						tweenservice:Create(toggleconfig.Bind, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+					end)
+
+					toggleconfig.Reset.MouseEnter:Connect(function()
+						tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.7}):Play()
+					end)
+
+
+					toggleconfig.Reset.MouseLeave:Connect(function()
+						tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
+					end)
+
+					toggleconfig.Bind.interact.MouseButton1Click:Connect(function()
+						tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+						task.wait(0.2)
+						toggleconfig.Bind.BindFrame.a.Text = "..."
+						tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+						local connection
+						connection = userinput.InputBegan:Connect(function(input)
+							if input.UserInputType == Enum.UserInputType.Keyboard then
+								tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+								task.wait(0.2)
+								setKeybind(input.KeyCode)
+								connection:Disconnect()
+								tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+							end
+						end)
+					end)
+
+					userinput.InputBegan:Connect(function(input)
+						if tog.Keybind and input.KeyCode == tog.Keybind then
+							toggleInteract() 
+						end
+					end)
+
+					local debounce2 = false
+
+					toggleconfig.Reset.interact.MouseButton1Click:Connect(function()
+						if debounce2 then return end
+						debounce2 = true
+
+						setKeybind(nil)
+						tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(3, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out), {Rotation = 360}):Play()
+
+						-- Reset rotation and debounce after the tween animation finishes
+						task.delay(3, function()
+							toggleconfig.Reset.ImageLabel.Rotation = 0
+							debounce2 = false
+						end)
+					end)
+
+
+				end
+
+				centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+					if p == 'Hitbox' then
+						if tog.Value then
+							toggle.tog.BackgroundColor3 = color
+						end
+					end
+				end)
+
+			end
+			function sectionelement:createslider(sliderdata)
+				local slidedata = {
+					Title = sliderdata.Title or 'Slider';
+					Sliders = sliderdata.Sliders
+				}
+
+				local slider = pageholder.page.L.section.Container.slider:Clone()
+				slider.Visible = true
+				slider.Parent = section.Container
+				slider.title.Text = slidedata.Title
+				slider.Name = slidedata.Title
+				slider.slidelist.slideholder.Visible = false
+
+				for i, options in pairs(sliderdata.sliders) do
+					local slideme = pageholder.page.L.section.Container.slider.slidelist.slideholder:Clone()
+
+					options = {
+						title = options.title or 'slide',
+						increment = options.increment or 1,
+						range = options.range or {0,100},
+						startvalue = options.startvalue or 16,
+						callback = options.callback,
+					}
+
+					local slidedata = {
+						dragging = false
+					}
+
+					-- vars
+					slideme.Visible = true
+					slideme.Parent = slider.slidelist
+					slideme.sliderframe.suffix.Text = options.title or slideme.sliderframe.suffix:Destroy()
+
+					local sliderPosition
+					if options.startvalue <= options.range[1] then
+						sliderPosition = 0
+					elseif options.startvalue >= options.range[2] then
+						sliderPosition = 1
+					else
+						local range = options.range[2] - options.range[1]
+						sliderPosition = (options.startvalue - options.range[1]) / range
+					end
+
+					slideme.sliderframe.slide.Size = UDim2.new(sliderPosition, 0, 1, 0)
+					slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(options.startvalue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
+
+					local function UpdateSlider(x)
+						if slidedata.dragging then
+							local sliderPosition = (x - slideme.sliderframe.AbsolutePosition.X) / slideme.sliderframe.AbsoluteSize.X
+							sliderPosition = math.clamp(sliderPosition, 0, 1) -- Clamp the value between 0 and 1
+
+							local range = options.range[2] - options.range[1]
+							local newValue = options.range[1] + sliderPosition * range
+
+							-- Calculate the rounded value based on the increment
+							newValue = math.floor((newValue - options.range[1]) / options.increment + 0.5) * options.increment + options.range[1]
+
+							slideme.sliderframe.slide:TweenSize(UDim2.new(sliderPosition, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.2, true)
+							slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(newValue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
+							local scriptwork, Responderror = pcall(function()
+								options.callback(newValue)
+							end)
+							if not scriptwork then
+								print("error in ["..slideme.Name.."], " .. tostring(Responderror))
+							end
+						end
+					end
+
+
+					slideme.sliderframe.interact.MouseButton1Down:Connect(function(x)
+						slidedata.dragging = true
+						UpdateSlider(x)
+						tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+					end)
+
+					slideme.sliderframe.interact.MouseButton1Up:Connect(function()
+						slidedata.dragging = false
+
+					end)
+
+					centrl.util.AddConnection(userinput.InputEnded, function(input, processed)
+						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							slidedata.dragging = false
+							tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.64}):Play()
+						end
+					end)
+
+					centrl.util.AddConnection(userinput.InputChanged, function(input)
+						if slidedata.dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+							UpdateSlider(input.Position.X)
+						end
+					end)
+
+					slideme.sliderframe.slide.BackgroundColor3 = centrl.theme.Hitbox
+
+					centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+						if p == 'Hitbox' then
+							slideme.sliderframe.slide.BackgroundColor3 = color
+						end
+					end)
+
+				end
+
+				slider.slidelist.Size = UDim2.new(1,0,0,slider.slidelist.UIListLayout.AbsoluteContentSize.Y)
+				slider.Size = UDim2.new(1,-20,0,slider.slidelist.AbsoluteSize.Y + 28)
+
+			end
+
+			function sectionelement:createdropdown(dropdowndata)
+				local dropdata = {
+					Title = dropdowndata.Title or 'dropdown';
+					Callback = dropdowndata.Callback;
+					Options = dropdowndata.Options;
+					CurrentOption = dropdowndata.CurrentOption;
+					Placeholder = dropdowndata.Placeholder or '...';
+					Multi = dropdowndata.Multi;
+				}
+
+				local dropdown = pageholder.page.L.section.Container.dropdown:Clone()
+				dropdown.Visible = true
+				dropdown.Parent = section.Container
+				dropdown.title.Text = dropdata.Title
+				dropdown.Name = dropdata.Title
+				dropdown.container.option.Visible = false
+				dropdown.container.Visible = false
+				dropdown.container.Position = UDim2.new(1, 0,0, 30)
+				dropdown.dropframe.selected.Text = dropdowndata.Placeholder or '...'
+
+
+				local selectedTextColor = centrl.theme.Accent 
+				local deselectedTextColor = Color3.fromRGB(122, 122, 122)
+				local open = false
+				local bounce = false
+				local optionbutton = dropdown.container.option
+				local droprun
+
+				dropdown.dropframe.interact.MouseButton1Click:Connect(function()
+					if bounce then return end
+					if not open then
+						open = true
+						dropdown.container.Visible = true
+
+						tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+						tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ScrollBarImageTransparency = 0}):Play()
+						tweenservice:Create(dropdown.container.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
+						for _,o in ipairs(dropdown.container:GetChildren()) do
+							if o:IsA('Frame') then
+								tweenservice:Create(o, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+								tweenservice:Create(o.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+							end
+						end
+						dropdown.container:TweenPosition(UDim2.new(1, 0,0, 55),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+						tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 180}):Play()
+						dropdown:TweenSize(UDim2.new(1, -20,0, dropdown.container.AbsoluteSize.Y + 55), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+					else
+						open = false
+						tweenservice:Create(dropdown.container, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+						tweenservice:Create(dropdown.container, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ScrollBarImageTransparency = 1}):Play()
+						tweenservice:Create(dropdown.container.UIStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+						for _,o in ipairs(dropdown.container:GetChildren()) do
+							if o:IsA('Frame') then
+								tweenservice:Create(o, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+								tweenservice:Create(o.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+							end
+						end
+						dropdown.container:TweenPosition(UDim2.new(1, 0,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+						tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
+						dropdown:TweenSize(UDim2.new(1, -20,0, 46), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+						task.wait(0.2)
+						dropdown.container.Visible = false
+					end
+				end)
+
+				local selectedOptions = {}
+				local selected = false -- Store selected options in order
+				if dropdata.Options and #dropdata.Options > 0 then
+					for _, optionText in ipairs(dropdata.Options) do
+						local option = optionbutton:Clone()
+						option.title.Text = optionText
+						option.Parent = dropdown.container
+						option.Visible = true
+						option.Name = optionText
+
+						-- Add click event to each option
+						option.interact.MouseButton1Click:Connect(function()
+							if dropdata.Multi then
+								-- Toggle the selection status
+								if selectedOptions[optionText] then
+									selectedOptions[optionText] = nil
+									tweenservice:Create(option.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = deselectedTextColor}):Play()
+									tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = deselectedTextColor}):Play()
+									tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+									option.title:TweenPosition(UDim2.new(0, 10,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+								else
+									selectedOptions[optionText] = true
+									tweenservice:Create(option.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = selectedTextColor}):Play()
+									tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = selectedTextColor}):Play()
+									tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+									option.title:TweenPosition(UDim2.new(0, 15,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+								end
+
+								-- Generate the combined text for selected options in order
+								local selectedOptionTable = {}
+								for _, option in pairs(dropdata.Options) do
+									if selectedOptions[option] then
+										table.insert(selectedOptionTable, option)
+									end
+								end
+
+								if #selectedOptionTable == 0 then
+									dropdown.dropframe.selected.Text = dropdata.Placeholder
+								else
+									local combinedText = table.concat(selectedOptionTable, ", ")
+									dropdown.dropframe.selected.Text = combinedText
+								end
+
+								if dropdata.Callback then
+									local orderedSelectedOptions = {}
+									for _, option in ipairs(dropdata.Options) do
+										if selectedOptions[option] then
+											table.insert(orderedSelectedOptions, option)
+										end
+									end
+									dropdata.Callback(orderedSelectedOptions)
+								end
+							else
+
+								dropdown.dropframe.selected.Text = optionText
+								for _, opt in pairs(dropdown.container:GetChildren()) do
+									if opt:IsA("Frame") and opt.title then
+										tweenservice:Create(opt.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = deselectedTextColor}):Play()
+										tweenservice:Create(opt.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = deselectedTextColor}):Play()
+										tweenservice:Create(opt.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+										opt.title:TweenPosition(UDim2.new(0, 10,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+									end
+								end
+								tweenservice:Create(option.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = selectedTextColor}):Play()
+								tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = selectedTextColor}):Play()
+								tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+								option.title:TweenPosition(UDim2.new(0, 15,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
+
+								if dropdata.Callback then
+									dropdata.Callback(optionText)
+								end
+
+								-- could have put ina function but what the hell
+
+								open = false
+								tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+								tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ScrollBarImageTransparency = 1}):Play()
+								tweenservice:Create(dropdown.container.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+								for _,o in ipairs(dropdown.container:GetChildren()) do
+									if o:IsA('Frame') then
+										tweenservice:Create(o, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+										tweenservice:Create(o.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+									end
+								end
+								dropdown.container:TweenPosition(UDim2.new(1, 0,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+								tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
+								dropdown:TweenSize(UDim2.new(1, -20,0, 46), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+								task.wait(0.2)
+								dropdown.container.Visible = false
+
+								return selectedOptions
+							end
+						end)
+
+					end
+
+					if dropdata.currentoption then
+						dropdown.dropframe.selected.Text = dropdata.currentoption
+					end
+				else
+					dropdown.dropframe.selected.Text = '...'
+				end
+
+				--theme/pre load
+				dropdown.container.ScrollBarImageColor3 = centrl.theme.Accent
+
+				centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
+					if p == 'Accent' then
+						dropdown.container.ScrollBarImageColor3 = color
+						selectedTextColor = color
+					end
+				end)
+
+			end
+
+			function sectionelement:createcolorpicker(pickerdata)
 				local pickdata = {
 					Title = pickerdata.Title or 'colorpicker',
 					Color = pickerdata.Color,
 					Callback = pickerdata.Callback,
 				}
 
-				local colorpicker = window.sublib.settfr.ScrollingFrame.section.Container.colorpicker:Clone()
+				local colorpicker = pageholder.page.L.section.Container.colorpicker:Clone()
 				colorpicker.Visible = true
 				colorpicker.Parent = section.Container
 				colorpicker.title.Text = pickdata.Title
 				colorpicker.Name = pickdata.Title
 
+				local pickerconfig = ui.pickerconfig:Clone()
+				pickerconfig.Parent = ui.renders
+				pickerconfig.Visible = false
+
 				local open = false
 				local bounce = false
+
+				colorpicker.container.SVPicker.BackgroundTransparency = 1
+				colorpicker.container.Hue.BackgroundTransparency = 1
 
 				local function openpicker()
 					open = true
@@ -319,14 +1684,19 @@ do
 					colorpicker:TweenSize(UDim2.new(1, -20,0, 170), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
 					wait(0.5)
 					colorpicker.container.Visible = true
+					tweenservice:Create(colorpicker.container.SVPicker, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					tweenservice:Create(colorpicker.container.Hue, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
 					bounce = false
 				end
 
 				local function hidepicker()
 					open = false
 					bounce = true
+					tweenservice:Create(colorpicker.container.SVPicker, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+					tweenservice:Create(colorpicker.container.Hue, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
 					colorpicker:TweenSize(UDim2.new(1, -20,0, 28), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.4, true)
 					wait(0.4)
+					colorpicker.container.Visible = false
 					bounce = false
 				end
 
@@ -502,83 +1872,96 @@ do
 					updatestuff()
 				end)
 
-				return pickdata
-
-			end
-
-
-			function getelements:createtoggle(toggledata)
-				local tog = {
-					Title = toggledata.Title or 'Toggle';
-					Callback = toggledata.Callback;
-					Value = toggledata.Value or false;
-				}
-
-				local toggle = window.sublib.settfr.ScrollingFrame.section.Container.toggle:Clone()
-				toggle.Visible = true
-				toggle.Parent = section.Container
-				toggle.title.Text = tog.Title
-				toggle.Name = tog.Title
-
-				if not tog.Value then
-					toggle.tog.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-					toggle.title.TextTransparency = 0.6
-					toggle.tog.check.ImageTransparency = 1
-					toggle.tog.check.Visible = false
-					toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 4), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
-					toggle.tog.gradfr.BackgroundTransparency = 1
-				else
-					toggle.tog.BackgroundColor3 = centrl.theme.Hitbox
-					toggle.title.TextTransparency = 0
-					toggle.tog.check.ImageTransparency = 0.3
-					toggle.tog.check.Visible = true
-					toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
-					toggle.tog.gradfr.BackgroundTransparency = 0
-				end
-
-				local function toggleInteract()
-					tog.Value = not tog.Value
-					if tog.Value then
-						tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-						tweenservice:Create(toggle.tog, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Hitbox}):Play()
-						tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-						toggle.tog.check.Visible = true
-						tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
-						tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.3}):Play()
-						toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-					else
-						tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.6}):Play()
-						tweenservice:Create(toggle.tog, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(20, 20, 20)}):Play()
-						tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-						tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.3}):Play()
-						toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-						tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					end
-
-					local scriptwork, Responderror = pcall(function()
-						tog.Callback(tog.Value)
-					end)
-
-					if not scriptwork then
-						print("error in ["..toggle.Name.."], " .. tostring(Responderror))
-					end
-				end
-
-				toggle.interact.MouseButton1Click:Connect(toggleInteract)
-
-				centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-					if p == 'Hitbox' then
-						if tog.Value then
-							toggle.tog.BackgroundColor3 = color
-						end
-					end
+				colorpicker.config.MouseEnter:Connect(function()
+					tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+					tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 50}):Play()
 				end)
 
-				return tog
+				colorpicker.config.MouseLeave:Connect(function()
+					tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(63, 63, 63)}):Play()
+					tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.61}):Play()
+					tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
+				end)
+
+				local function pickcopen()
+					pickerconfig.Visible = true
+					tweenservice:Create(pickerconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					tweenservice:Create(pickerconfig.Copy.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+					tweenservice:Create(pickerconfig.Copy.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+					tweenservice:Create(pickerconfig.Paste.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+					tweenservice:Create(pickerconfig.Copy.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+					tweenservice:Create(pickerconfig.Paste.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+					tweenservice:Create(pickerconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
+					tweenservice:Create(pickerconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
+				end
+
+				local function pickcclose()
+					tweenservice:Create(pickerconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+					tweenservice:Create(pickerconfig.Copy.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+					tweenservice:Create(pickerconfig.Copy.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+					tweenservice:Create(pickerconfig.Paste.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
+					tweenservice:Create(pickerconfig.Copy.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+					tweenservice:Create(pickerconfig.Paste.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
+					tweenservice:Create(pickerconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
+					tweenservice:Create(pickerconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.5}):Play()
+					task.wait(0.3)
+					pickerconfig.Visible = false
+					pickerconfig:TweenPosition(UDim2.new(0,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
+				end
+
+				local togconfig
+
+				local debounce1 = false
+
+				local function pickconfig()
+					if debounce1 then return end
+					debounce1 = true
+
+					if not pickerconfig.Visible then
+						togconfig = runservice.RenderStepped:Connect(function()
+							pickerconfig:TweenPosition(UDim2.new(0,colorpicker.config.AbsolutePosition.X,0,colorpicker.config.AbsolutePosition.Y + colorpicker.config.AbsoluteSize.Y + 5), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
+							if not pickerconfig.Visible then
+								togconfig:Disconnect()
+							end
+						end)
+						pickcopen()
+					else
+						if togconfig then togconfig:Disconnect() end
+						pickcclose()
+					end
+
+					-- Debounce reset after a short delay
+					task.delay(0.4, function()
+						debounce1 = false
+					end)
+				end
+
+				colorpicker.config.MouseButton1Click:Connect(function()
+					pickconfig()
+				end)
+
+				pickerconfig.Copy.MouseEnter:Connect(function()
+					tweenservice:Create(pickerconfig.Copy, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
+				end)
+
+
+				pickerconfig.Copy.MouseLeave:Connect(function()
+					tweenservice:Create(pickerconfig.Copy, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				end)
+
+				pickerconfig.Paste.MouseEnter:Connect(function()
+					tweenservice:Create(pickerconfig.Paste, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
+				end)
+
+
+				pickerconfig.Paste.MouseLeave:Connect(function()
+					tweenservice:Create(pickerconfig.Paste, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+				end)
 
 			end
 
-			function getelements:create_textinput(textidata)
+			function sectionelement:create_textinput(textidata)
 
 				local textinputdata = {
 					Title = textidata.Title or 'Textinput',
@@ -587,7 +1970,7 @@ do
 					Callback = textidata.Callback
 				}
 
-				local textinput = window.sublib.settfr.ScrollingFrame.section.Container.textinput:Clone()
+				local textinput = pageholder.page.L.section.Container.textinput:Clone()
 				-- vars
 				textinput.Visible = true
 				textinput.Parent = section.Container
@@ -668,12 +2051,8 @@ do
 				-- Hide the cursor when the TextBox is not focused
 				textBox.FocusLost:Connect(function()
 					tweenservice:Create(cursor, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					if textinputdata.Clearonlost then
-						textLabel.Text = textinputdata.Placeholder
-						tweenservice:Create(textLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(117, 117, 117)}):Play()
-					else
-						textLabel.Text = textBox.Text
-					end
+					tweenservice:Create(textLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(117, 117, 117)}):Play()
+					textLabel.Text = textinputdata.Placeholder
 					task.wait(0.3)
 					cursor.Visible = false
 				end)
@@ -693,1387 +2072,8 @@ do
 					end
 				end)
 
-				return textinputdata
 
 			end
-
-			function getelements:createslider(sliderdata)
-				local slidedata = {
-					Title = sliderdata.Title or 'Slider';
-					Sliders = sliderdata.Sliders
-				}
-
-				local slider =  window.sublib.settfr.ScrollingFrame.section.Container.slider:Clone()
-				slider.Visible = true
-				slider.Parent = section.Container
-				slider.title.Text = slidedata.Title
-				slider.Name = slidedata.Title
-				slider.slidelist.slideholder.Visible = false
-
-				for i, options in pairs(slidedata.Sliders) do
-					local slideme = pageholder.page.L.section.Container.slider.slidelist.slideholder:Clone()
-
-					options = {
-						title = options.title or 'slide',
-						increment = options.increment or 1,
-						range = options.range or {0,100},
-						startvalue = options.startvalue or 16,
-						callback = options.callback,
-					}
-
-					local slidedata = {
-						dragging = false
-					}
-
-					-- vars
-					slideme.Visible = true
-					slideme.Parent = slider.slidelist
-					slideme.sliderframe.suffix.Text = options.title or slideme.sliderframe.suffix:Destroy()
-
-					local sliderPosition
-					if options.startvalue <= options.range[1] then
-						sliderPosition = 0
-					elseif options.startvalue >= options.range[2] then
-						sliderPosition = 1
-					else
-						local range = options.range[2] - options.range[1]
-						sliderPosition = (options.startvalue - options.range[1]) / range
-					end
-
-					slideme.sliderframe.slide.Size = UDim2.new(sliderPosition, 0, 1, 0)
-					slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(options.startvalue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
-
-					local function UpdateSlider(x)
-						if slidedata.dragging then
-							local sliderPosition = (x - slideme.sliderframe.AbsolutePosition.X) / slideme.sliderframe.AbsoluteSize.X
-							sliderPosition = math.clamp(sliderPosition, 0, 1) -- Clamp the value between 0 and 1
-
-							local range = options.range[2] - options.range[1]
-							local newValue = options.range[1] + sliderPosition * range
-
-							-- Calculate the rounded value based on the increment
-							newValue = math.floor((newValue - options.range[1]) / options.increment + 0.5) * options.increment + options.range[1]
-
-							slideme.sliderframe.slide:TweenSize(UDim2.new(sliderPosition, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.2, true)
-							slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(newValue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
-							local scriptwork, Responderror = pcall(function()
-								options.callback(newValue)
-							end)
-							if not scriptwork then
-								print("error in ["..slideme.Name.."], " .. tostring(Responderror))
-							end
-						end
-					end
-
-
-					slideme.sliderframe.interact.MouseButton1Down:Connect(function(x)
-						slidedata.dragging = true
-						UpdateSlider(x)
-						tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-					end)
-
-					slideme.sliderframe.interact.MouseButton1Up:Connect(function()
-						slidedata.dragging = false
-
-					end)
-
-					centrl.util.AddConnection(userinput.InputEnded, function(input, processed)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
-							slidedata.dragging = false
-							tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.64}):Play()
-						end
-					end)
-
-					centrl.util.AddConnection(userinput.InputChanged, function(input)
-						if slidedata.dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-							UpdateSlider(input.Position.X)
-						end
-					end)
-
-					slideme.sliderframe.slide.BackgroundColor3 = centrl.theme.Hitbox
-
-					centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-						if p == 'Hitbox' then
-							slideme.sliderframe.slide.BackgroundColor3 = color
-						end
-					end)
-
-				end
-
-				slider.slidelist.Size = UDim2.new(1,0,0,slider.slidelist.UIListLayout.AbsoluteContentSize.Y)
-				slider.Size = UDim2.new(1,-20,0,slider.slidelist.AbsoluteSize.Y + 28)
-
-				return slidedata
-
-			end
-
-			return getelements
-
-		end
-
-		local theme = librarysettings:initsection('THEME')
-		local Privacy = librarysettings:initsection('PRIVACY')
-
-		-- theme --
-
-		theme:createcolorpicker({
-			Title = 'Accent';
-			Color = centrl.theme.Accent;
-			Callback = function(c)
-				centrl:UpdateTheme({
-					['Accent'] = c
-				})
-			end,
-		})
-
-		theme:createcolorpicker({
-			Title = 'Hitbox';
-			Color = centrl.theme.Hitbox;
-			Callback = function(c)
-				centrl:UpdateTheme({
-					['Hitbox'] = c
-				})
-			end,
-		})
-
-		theme:createcolorpicker({
-			Title = 'Glow';
-			Color = centrl.theme.Glow;
-			Callback = function(c)
-				centrl:UpdateTheme({
-					['Glow'] = c
-				})
-			end,
-		})
-
-		theme:createslider({
-			Title = 'Glow';
-			Sliders = {
-				{
-					title = 'Density',
-					range = {0,1},
-					increment = 0.1,
-					startvalue = 0,
-					callback = function(lol)
-
-						window.Shadow.Image.ImageTransparency = lol
-
-					end,
-				}
-			}
-
-		})
-
-		theme:create_textinput({
-			Title = 'Wallpaper',
-			Placeholder = 'Enter Roblox Image ID',
-			Clearonlost = false,
-			Callback = function(w)
-				window.ImageLabel.Image = 'rbxassetid://'..w
-				print(w)
-			end,
-		})
-
-
-		--  --
-
-		-- privacy --
-		Privacy:createtoggle({
-			Title = 'Toggle Profile Viewer';
-			Value = false;
-			Callback = function(v)
-				if v then
-					window.profile.Visible = false
-					window.tabhlder:TweenSize(UDim2.new(0, 170,1, -40), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-					task.wait(0.1)
-					window.profile.Visible = false
-				else
-					window.profile.Visible = true
-					window.tabhlder:TweenSize(UDim2.new(0, 170,1, -140), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-				end
-			end,
-		})
-		--  --
-
-	end
-
-	---\\ ----------------- // ---
-
-
-	function centrl:init(library)
-		local lib = {
-			first = false,
-			selected = false
-		}
-
-		local librarydata = {
-			title = library.Title or 'Centrl.cc';
-			creet = library.text
-		}
-
-		_G.Dizzy = librarydata.creet
-
-		centrl.util.AddDrag(topbar, window, 0.2)
-		centrl.util.MakeResizeable(window.resize, window, Vector2.new(654,428))
-		ui.Enabled = true
-
-		topbar.title.Text = librarydata.title
-
-		topbar.clsfr.MouseEnter:Connect(function()
-			tweenservice:Create(topbar.clsfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.4}):Play()
-		end)
-
-		topbar.clsfr.MouseLeave:Connect(function()
-			tweenservice:Create(topbar.clsfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		end)
-
-		topbar.setfr.MouseEnter:Connect(function()
-			tweenservice:Create(topbar.setfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.4}):Play()
-		end)
-
-		topbar.setfr.MouseLeave:Connect(function()
-			tweenservice:Create(topbar.setfr, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		end)
-
-		local debounce = false
-
-		topbar.setfr.settings.MouseButton1Click:Connect(function()
-			if debounce then return end
-			debounce = true
-
-			if not settingopen then
-				settingopen = true
-				window.sublib.settfr.Visible = true
-				window.sublib.settfr:TweenPosition(UDim2.new(1, -330, 0, 48), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
-				tweenservice:Create(window.sublib, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.55}):Play()
-			else
-				settingopen = false
-				window.sublib.settfr:TweenPosition(UDim2.new(1, 0, 0, 48), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.4, true)
-				tweenservice:Create(window.sublib, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-				task.wait(0.4)
-				window.sublib.settfr.Visible = false
-			end
-
-			task.delay(0.5, function() -- Adjust the delay time as needed
-				debounce = false
-			end)
-		end)
-
-		-- theme/preload
-
-		topbar.div.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, centrl.theme.Accent), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 20, 20))}
-
-		centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-			if p == 'Accent' then
-				topbar.div.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, color), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 20, 20))}
-			elseif p == 'Glow' then
-				window.Shadow.Image.ImageColor3 = color
-			end
-		end)
-
-		function lib:createtab(tbtitle)
-			local sectioninit = {}
-			local tab = tabholder.tbbtn:Clone()
-			tab.Visible = true
-			tab.Parent = tabholder
-			tab.title.Text = tbtitle
-			tab.Name = tbtitle
-
-			local page = pageholder.page:Clone()
-			page.Visible = false
-			page.Parent = pageholder
-			page.Name = tbtitle
-
-			for _, ph in ipairs(page.L.section.Container:GetChildren()) do
-				if ph:IsA("Frame") then
-					ph:Destroy()
-				end
-			end
-
-			page.L.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-				if page.L.ListLayout.AbsoluteContentSize.Y > page.R.ListLayout.AbsoluteContentSize.Y then
-					page.CanvasSize = UDim2.new(0,0,0,page.L.ListLayout.AbsoluteContentSize.Y + 20)
-				else
-					page.CanvasSize = UDim2.new(0,0,0,page.R.ListLayout.AbsoluteContentSize.Y + 20)
-				end
-			end)
-
-			page.R.ListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-				if page.R.ListLayout.AbsoluteContentSize.Y > page.L.ListLayout.AbsoluteContentSize.Y then
-					page.CanvasSize = UDim2.new(0,0,0,page.R.ListLayout.AbsoluteContentSize.Y + 20)
-				else
-					page.CanvasSize = UDim2.new(0,0,0,page.L.ListLayout.AbsoluteContentSize.Y + 20)
-				end
-			end)
-
-			local function UpdateTabButtonColors(selectedTabButton)
-				for _, tabbutton in ipairs(tabholder:GetChildren()) do
-					if tabbutton:IsA("TextButton") then
-						if tabbutton == selectedTabButton then
-							tweenservice:Create(tabbutton.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-							tweenservice:Create(tabbutton.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Accent}):Play()
-							--	tweenservice:Create(tabbutton.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-							tweenservice:Create(tabbutton, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Accent}):Play()
-							tweenservice:Create(tabbutton, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.8}):Play()
-							tabbutton.title:TweenPosition(UDim2.new(0, 15,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-							tweenservice:Create(tabbutton.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-
-						else
-							tweenservice:Create(tabbutton.title, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.81}):Play()
-							tweenservice:Create(tabbutton.indicator, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(47, 47, 47)}):Play()
-							tweenservice:Create(tabbutton, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-							tabbutton.title:TweenPosition(UDim2.new(0, 8,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-						end
-					end
-				end
-			end
-
-			if not lib.first then
-				page.Visible = true
-			end
-
-			if lib.first then
-				tab.title.TextTransparency = 0.81
-				tab.title:TweenPosition(UDim2.new(0, 8,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-				tab.indicator.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
-				tweenservice:Create(tab, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-			else
-				lib.first = tbtitle
-				tab.title.TextColor3 = Color3.fromRGB(255, 255, 255)
-				tab.title:TweenPosition(UDim2.new(0, 10,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-				tab.BackgroundColor3 = centrl.theme.Accent
-				tab.indicator.BackgroundColor3 = centrl.theme.Accent
-				tweenservice:Create(tab, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.8}):Play()
-			end
-
-
-			tab.MouseButton1Click:Connect(function()
-				for _, otherpages in ipairs(pageholder:GetChildren()) do
-					if otherpages:IsA("ScrollingFrame") then
-						otherpages.Visible = false
-					end
-					page.Visible = true
-				end
-				lib.first = tbtitle
-				UpdateTabButtonColors(tab)
-			end)
-
-			-- theme / preload
-
-			centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-				if p == 'Tab Unselected' or 'Tab Selected' then
-					local selectedTabButton = tabholder:FindFirstChild(lib.first)
-					if selectedTabButton and selectedTabButton:IsA("TextButton") then
-						UpdateTabButtonColors(selectedTabButton)
-					end
-				end
-			end)
-
-
-			function sectioninit:createsection(sectitle, secdata)
-				local sectiondata = {
-					side = secdata.side or centrl.util.GetSide(#page.L:GetChildren(), #page.R:GetChildren())
-				}
-				local sectionelement = {}
-
-				local section = page.L.section:Clone()
-				section.Visible = true
-				section.Parent =  page[sectiondata.side]
-				section.titlefr.title.Text = sectitle
-				section.Name = sectitle
-
-				for _, ph in ipairs(section.Container:GetChildren()) do
-					if ph:IsA("Frame") then
-						ph:Destroy()
-					end
-				end
-
-				local function resize()
-					section.Container.UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-						section:TweenSize(UDim2.new(1,0,0,section.Container.UIListLayout.AbsoluteContentSize.Y + 50), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-					end)
-				end
-				resize()
-
-				-- theme/pre load
-				section.titlefr.div.BackgroundColor3 = centrl.theme.Accent
-
-				centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-					if p == 'Accent' then
-						section.titlefr.div.BackgroundColor3 = color
-					end
-				end)
-
-				function sectionelement:createbutton(buttondata)
-					local btn = {
-						Title = buttondata.Title or 'Button';
-						Callback = buttondata.Callback;
-					}
-
-					local button = pageholder.page.L.section.Container.button:Clone()
-					button.Visible = true
-					button.Parent = section.Container
-					button.title.Text = btn.Title
-					button.Name = btn.Title
-
-					button.interact.MouseButton1Click:Connect(function()
-						local scriptwork, Responderror = pcall(function()
-							btn.Callback(btn.Callback)
-						end)
-						if not scriptwork then
-							print("error ["..button.Name.."], " .. tostring(Responderror))
-						end
-					end)
-
-					button.MouseEnter:Connect(function()
-						tweenservice:Create(button.Frame.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-					end)
-					button.MouseLeave:Connect(function()
-						tweenservice:Create(button.Frame.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.7}):Play()
-					end)
-
-				end
-
-				function sectionelement:createtoggle(toggledata)
-					local tog = {
-						Title = toggledata.Title or 'Toggle';
-						Callback = toggledata.Callback;
-						Value = toggledata.Value or false;
-						Config = toggledata.Config or false;
-					}
-
-					local toggle = pageholder.page.L.section.Container.toggle:Clone()
-					toggle.Visible = true
-					toggle.Parent = section.Container
-					toggle.title.Text = tog.Title
-					toggle.Name = tog.Title
-
-					local toggleconfig = ui.togconfig:Clone()
-					toggleconfig.Visible = false
-					toggleconfig.Parent = ui.renders
-
-
-					if not tog.Config then
-						toggle.config:Destroy()
-					end
-
-					-- preload (just used close function)
-					tweenservice:Create(toggleconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.Bind.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.Bind.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.Reset.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-					tweenservice:Create(toggleconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-					tweenservice:Create(toggleconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.5}):Play()
-
-					if not tog.Value then
-						toggle.tog.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-						toggle.title.TextTransparency = 0.6
-						toggle.tog.check.ImageTransparency = 1
-						toggle.tog.check.Visible = false
-						toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 4), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
-						toggle.tog.gradfr.BackgroundTransparency = 1
-					else
-						toggle.tog.BackgroundColor3 = centrl.theme.Hitbox
-						toggle.title.TextTransparency = 0
-						toggle.tog.check.ImageTransparency = 0.3
-						toggle.tog.check.Visible = true
-						toggle.tog.check:TweenPosition(UDim2.new(0.5, 0,0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
-						toggle.tog.gradfr.BackgroundTransparency = 0
-					end
-
-					local function toggleInteract()
-						tog.Value = not tog.Value
-						if tog.Value then
-							tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-							tweenservice:Create(toggle.tog, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Hitbox}):Play()
-							tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-							toggle.tog.check.Visible = true
-							tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
-							tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.3}):Play()
-							toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-						else
-							tweenservice:Create(toggle.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.6}):Play()
-							tweenservice:Create(toggle.tog, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(20, 20, 20)}):Play()
-							tweenservice:Create(toggle.tog.check, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-							tweenservice:Create(toggle.tog.check.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.3}):Play()
-							toggle.tog.check:TweenPosition(UDim2.new(0.5, 0, 0.5, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
-							tweenservice:Create(toggle.tog.gradfr, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						end
-
-						local scriptwork, Responderror = pcall(function()
-							tog.Callback(tog.Value)
-						end)
-
-						if not scriptwork then
-							print("error in ["..toggle.Name.."], " .. tostring(Responderror))
-						end
-					end
-
-					toggle.interact.MouseButton1Click:Connect(toggleInteract)
-
-					if tog.Config then
-
-						toggle.config.MouseEnter:Connect(function()
-							tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-							tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-							tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 50}):Play()
-						end)
-
-						toggle.config.MouseLeave:Connect(function()
-							tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(63, 63, 63)}):Play()
-							tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.61}):Play()
-							tweenservice:Create(toggle.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
-						end)
-
-						local function togopen()
-							toggleconfig.Visible = true
-							tweenservice:Create(toggleconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-							tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
-							tweenservice:Create(toggleconfig.Bind.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-							tweenservice:Create(toggleconfig.Bind.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-							tweenservice:Create(toggleconfig.Reset.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-							tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-							tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-							tweenservice:Create(toggleconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
-							tweenservice:Create(toggleconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
-						end
-
-						local function togclose()
-							tweenservice:Create(toggleconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.Bind.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.Bind.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.Reset.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-							tweenservice:Create(toggleconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-							tweenservice:Create(toggleconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.5}):Play()
-							task.wait(0.3)
-							toggleconfig.Visible = false
-							toggleconfig:TweenPosition(UDim2.new(0,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
-						end
-
-						local togconfig
-
-						local debounce1 = false
-
-						local function tglconfig()
-							if debounce1 then return end
-							debounce1 = true
-
-							if not toggleconfig.Visible then
-								togconfig = runservice.RenderStepped:Connect(function()
-									toggleconfig:TweenPosition(UDim2.new(0,toggle.config.AbsolutePosition.X,0,toggle.config.AbsolutePosition.Y + toggle.config.AbsoluteSize.Y + 5), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
-									if not toggleconfig.Visible then
-										togconfig:Disconnect()
-									end
-								end)
-								togopen()
-							else
-								if togconfig then togconfig:Disconnect() end
-								togclose()
-							end
-
-							-- Debounce reset after a short delay
-							task.delay(0.4, function()
-								debounce1 = false
-							end)
-						end
-
-						toggle.config.MouseButton1Click:Connect(function()
-							tglconfig()
-						end)
-
-						local function setKeybind(key)
-
-							if key == nil then
-								toggleconfig.Bind.BindFrame.a.Text = 'None'
-								tog.Keybind = nil
-							else
-								tog.Keybind = key
-								toggleconfig.Bind.BindFrame.a.Text = key.Name
-							end
-						end
-
-						toggleconfig.Bind.MouseEnter:Connect(function()
-							tweenservice:Create(toggleconfig.Bind, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
-						end)
-
-
-						toggleconfig.Bind.MouseLeave:Connect(function()
-							tweenservice:Create(toggleconfig.Bind, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						end)
-
-						toggleconfig.Reset.MouseEnter:Connect(function()
-							tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.7}):Play()
-						end)
-
-
-						toggleconfig.Reset.MouseLeave:Connect(function()
-							tweenservice:Create(toggleconfig.Reset, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
-						end)
-
-						toggleconfig.Bind.interact.MouseButton1Click:Connect(function()
-							tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-							task.wait(0.2)
-							toggleconfig.Bind.BindFrame.a.Text = "..."
-							tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-							local connection
-							connection = userinput.InputBegan:Connect(function(input)
-								if input.UserInputType == Enum.UserInputType.Keyboard then
-									tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-									task.wait(0.2)
-									setKeybind(input.KeyCode)
-									connection:Disconnect()
-									tweenservice:Create(toggleconfig.Bind.BindFrame.a, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-								end
-							end)
-						end)
-
-						userinput.InputBegan:Connect(function(input)
-							if tog.Keybind and input.KeyCode == tog.Keybind then
-								toggleInteract() 
-							end
-						end)
-
-						local debounce2 = false
-
-						toggleconfig.Reset.interact.MouseButton1Click:Connect(function()
-							if debounce2 then return end
-							debounce2 = true
-
-							setKeybind(nil)
-							tweenservice:Create(toggleconfig.Reset.ImageLabel, TweenInfo.new(3, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out), {Rotation = 360}):Play()
-
-							-- Reset rotation and debounce after the tween animation finishes
-							task.delay(3, function()
-								toggleconfig.Reset.ImageLabel.Rotation = 0
-								debounce2 = false
-							end)
-						end)
-
-
-					end
-
-					centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-						if p == 'Hitbox' then
-							if tog.Value then
-								toggle.tog.BackgroundColor3 = color
-							end
-						end
-					end)
-
-				end
-				function sectionelement:createslider(sliderdata)
-					local slidedata = {
-						Title = sliderdata.Title or 'Slider';
-						Sliders = sliderdata.Sliders
-					}
-
-					local slider = pageholder.page.L.section.Container.slider:Clone()
-					slider.Visible = true
-					slider.Parent = section.Container
-					slider.title.Text = slidedata.Title
-					slider.Name = slidedata.Title
-					slider.slidelist.slideholder.Visible = false
-
-					for i, options in pairs(sliderdata.sliders) do
-						local slideme = pageholder.page.L.section.Container.slider.slidelist.slideholder:Clone()
-
-						options = {
-							title = options.title or 'slide',
-							increment = options.increment or 1,
-							range = options.range or {0,100},
-							startvalue = options.startvalue or 16,
-							callback = options.callback,
-						}
-
-						local slidedata = {
-							dragging = false
-						}
-
-						-- vars
-						slideme.Visible = true
-						slideme.Parent = slider.slidelist
-						slideme.sliderframe.suffix.Text = options.title or slideme.sliderframe.suffix:Destroy()
-
-						local sliderPosition
-						if options.startvalue <= options.range[1] then
-							sliderPosition = 0
-						elseif options.startvalue >= options.range[2] then
-							sliderPosition = 1
-						else
-							local range = options.range[2] - options.range[1]
-							sliderPosition = (options.startvalue - options.range[1]) / range
-						end
-
-						slideme.sliderframe.slide.Size = UDim2.new(sliderPosition, 0, 1, 0)
-						slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(options.startvalue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
-
-						local function UpdateSlider(x)
-							if slidedata.dragging then
-								local sliderPosition = (x - slideme.sliderframe.AbsolutePosition.X) / slideme.sliderframe.AbsoluteSize.X
-								sliderPosition = math.clamp(sliderPosition, 0, 1) -- Clamp the value between 0 and 1
-
-								local range = options.range[2] - options.range[1]
-								local newValue = options.range[1] + sliderPosition * range
-
-								-- Calculate the rounded value based on the increment
-								newValue = math.floor((newValue - options.range[1]) / options.increment + 0.5) * options.increment + options.range[1]
-
-								slideme.sliderframe.slide:TweenSize(UDim2.new(sliderPosition, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.2, true)
-								slideme.sliderframe.value.Text = "<font size= '14'>"..tostring(newValue).."</font>".."<font color='rgb(86, 86, 86)'>/"..options.range[2].."</font>"
-								local scriptwork, Responderror = pcall(function()
-									options.callback(newValue)
-								end)
-								if not scriptwork then
-									print("error in ["..slideme.Name.."], " .. tostring(Responderror))
-								end
-							end
-						end
-
-
-						slideme.sliderframe.interact.MouseButton1Down:Connect(function(x)
-							slidedata.dragging = true
-							UpdateSlider(x)
-							tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-						end)
-
-						slideme.sliderframe.interact.MouseButton1Up:Connect(function()
-							slidedata.dragging = false
-
-						end)
-
-						centrl.util.AddConnection(userinput.InputEnded, function(input, processed)
-							if input.UserInputType == Enum.UserInputType.MouseButton1 then
-								slidedata.dragging = false
-								tweenservice:Create(slideme.sliderframe.suffix, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0.64}):Play()
-							end
-						end)
-
-						centrl.util.AddConnection(userinput.InputChanged, function(input)
-							if slidedata.dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-								UpdateSlider(input.Position.X)
-							end
-						end)
-
-						slideme.sliderframe.slide.BackgroundColor3 = centrl.theme.Hitbox
-
-						centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-							if p == 'Hitbox' then
-								slideme.sliderframe.slide.BackgroundColor3 = color
-							end
-						end)
-
-					end
-
-					slider.slidelist.Size = UDim2.new(1,0,0,slider.slidelist.UIListLayout.AbsoluteContentSize.Y)
-					slider.Size = UDim2.new(1,-20,0,slider.slidelist.AbsoluteSize.Y + 28)
-
-				end
-
-				function sectionelement:createdropdown(dropdowndata)
-					local dropdata = {
-						Title = dropdowndata.Title or 'dropdown';
-						Callback = dropdowndata.Callback;
-						Options = dropdowndata.Options;
-						CurrentOption = dropdowndata.CurrentOption;
-						Placeholder = dropdowndata.Placeholder or '...';
-						Multi = dropdowndata.Multi;
-					}
-
-					local dropdown = pageholder.page.L.section.Container.dropdown:Clone()
-					dropdown.Visible = true
-					dropdown.Parent = section.Container
-					dropdown.title.Text = dropdata.Title
-					dropdown.Name = dropdata.Title
-					dropdown.container.option.Visible = false
-					dropdown.container.Visible = false
-					dropdown.container.Position = UDim2.new(1, 0,0, 30)
-					dropdown.dropframe.selected.Text = dropdowndata.Placeholder or '...'
-
-
-					local selectedTextColor = centrl.theme.Accent 
-					local deselectedTextColor = Color3.fromRGB(122, 122, 122)
-					local open = false
-					local bounce = false
-					local optionbutton = dropdown.container.option
-					local droprun
-
-					dropdown.dropframe.interact.MouseButton1Click:Connect(function()
-						if bounce then return end
-						if not open then
-							open = true
-							dropdown.container.Visible = true
-
-							tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-							tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ScrollBarImageTransparency = 0}):Play()
-							tweenservice:Create(dropdown.container.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
-							for _,o in ipairs(dropdown.container:GetChildren()) do
-								if o:IsA('Frame') then
-									tweenservice:Create(o, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-									tweenservice:Create(o.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-								end
-							end
-							dropdown.container:TweenPosition(UDim2.new(1, 0,0, 55),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
-							tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 180}):Play()
-							dropdown:TweenSize(UDim2.new(1, -20,0, dropdown.container.AbsoluteSize.Y + 55), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
-						else
-							open = false
-							tweenservice:Create(dropdown.container, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-							tweenservice:Create(dropdown.container, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ScrollBarImageTransparency = 1}):Play()
-							tweenservice:Create(dropdown.container.UIStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-							for _,o in ipairs(dropdown.container:GetChildren()) do
-								if o:IsA('Frame') then
-									tweenservice:Create(o, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-									tweenservice:Create(o.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-								end
-							end
-							dropdown.container:TweenPosition(UDim2.new(1, 0,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
-							tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
-							dropdown:TweenSize(UDim2.new(1, -20,0, 46), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
-							task.wait(0.2)
-							dropdown.container.Visible = false
-						end
-					end)
-
-					local selectedOptions = {}
-					local selected = false -- Store selected options in order
-					if dropdata.Options and #dropdata.Options > 0 then
-						for _, optionText in ipairs(dropdata.Options) do
-							local option = optionbutton:Clone()
-							option.title.Text = optionText
-							option.Parent = dropdown.container
-							option.Visible = true
-							option.Name = optionText
-
-							-- Add click event to each option
-							option.interact.MouseButton1Click:Connect(function()
-								if dropdata.Multi then
-									-- Toggle the selection status
-									if selectedOptions[optionText] then
-										selectedOptions[optionText] = nil
-										tweenservice:Create(option.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = deselectedTextColor}):Play()
-										tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = deselectedTextColor}):Play()
-										tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-										option.title:TweenPosition(UDim2.new(0, 10,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-									else
-										selectedOptions[optionText] = true
-										tweenservice:Create(option.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = selectedTextColor}):Play()
-										tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = selectedTextColor}):Play()
-										tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-										option.title:TweenPosition(UDim2.new(0, 15,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-									end
-
-									-- Generate the combined text for selected options in order
-									local selectedOptionTable = {}
-									for _, option in pairs(dropdata.Options) do
-										if selectedOptions[option] then
-											table.insert(selectedOptionTable, option)
-										end
-									end
-
-									if #selectedOptionTable == 0 then
-										dropdown.dropframe.selected.Text = dropdata.Placeholder
-									else
-										local combinedText = table.concat(selectedOptionTable, ", ")
-										dropdown.dropframe.selected.Text = combinedText
-									end
-
-									if dropdata.Callback then
-										local orderedSelectedOptions = {}
-										for _, option in ipairs(dropdata.Options) do
-											if selectedOptions[option] then
-												table.insert(orderedSelectedOptions, option)
-											end
-										end
-										dropdata.Callback(orderedSelectedOptions)
-									end
-								else
-
-									dropdown.dropframe.selected.Text = optionText
-									for _, opt in pairs(dropdown.container:GetChildren()) do
-										if opt:IsA("Frame") and opt.title then
-											tweenservice:Create(opt.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = deselectedTextColor}):Play()
-											tweenservice:Create(opt.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = deselectedTextColor}):Play()
-											tweenservice:Create(opt.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-											opt.title:TweenPosition(UDim2.new(0, 10,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-										end
-									end
-									tweenservice:Create(option.title, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = selectedTextColor}):Play()
-									tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = selectedTextColor}):Play()
-									tweenservice:Create(option.indicator, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-									option.title:TweenPosition(UDim2.new(0, 15,0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true)
-
-									if dropdata.Callback then
-										dropdata.Callback(optionText)
-									end
-
-									-- could have put ina function but what the hell
-
-									open = false
-									tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-									tweenservice:Create(dropdown.container, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ScrollBarImageTransparency = 1}):Play()
-									tweenservice:Create(dropdown.container.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-									for _,o in ipairs(dropdown.container:GetChildren()) do
-										if o:IsA('Frame') then
-											tweenservice:Create(o, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-											tweenservice:Create(o.title, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-										end
-									end
-									dropdown.container:TweenPosition(UDim2.new(1, 0,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
-									tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
-									dropdown:TweenSize(UDim2.new(1, -20,0, 46), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
-									task.wait(0.2)
-									dropdown.container.Visible = false
-
-									return selectedOptions
-								end
-							end)
-
-						end
-
-						if dropdata.currentoption then
-							dropdown.dropframe.selected.Text = dropdata.currentoption
-						end
-					else
-						dropdown.dropframe.selected.Text = '...'
-					end
-
-					--theme/pre load
-					dropdown.container.ScrollBarImageColor3 = centrl.theme.Accent
-
-					centrl.util.AddConnection(centrl.Comms.Event, function(p, color)
-						if p == 'Accent' then
-							dropdown.container.ScrollBarImageColor3 = color
-							selectedTextColor = color
-						end
-					end)
-
-				end
-
-				function sectionelement:createcolorpicker(pickerdata)
-					local pickdata = {
-						Title = pickerdata.Title or 'colorpicker',
-						Color = pickerdata.Color,
-						Callback = pickerdata.Callback,
-					}
-
-					local colorpicker = pageholder.page.L.section.Container.colorpicker:Clone()
-					colorpicker.Visible = true
-					colorpicker.Parent = section.Container
-					colorpicker.title.Text = pickdata.Title
-					colorpicker.Name = pickdata.Title
-
-					local pickerconfig = ui.pickerconfig:Clone()
-					pickerconfig.Parent = ui.renders
-					pickerconfig.Visible = false
-
-					local open = false
-					local bounce = false
-
-					colorpicker.container.SVPicker.BackgroundTransparency = 1
-					colorpicker.container.Hue.BackgroundTransparency = 1
-
-					local function openpicker()
-						open = true
-						bounce = true
-						colorpicker:TweenSize(UDim2.new(1, -20,0, 170), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
-						wait(0.5)
-						colorpicker.container.Visible = true
-						tweenservice:Create(colorpicker.container.SVPicker, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-						tweenservice:Create(colorpicker.container.Hue, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-						bounce = false
-					end
-
-					local function hidepicker()
-						open = false
-						bounce = true
-						tweenservice:Create(colorpicker.container.SVPicker, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						tweenservice:Create(colorpicker.container.Hue, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						colorpicker:TweenSize(UDim2.new(1, -20,0, 28), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.4, true)
-						wait(0.4)
-						colorpicker.container.Visible = false
-						bounce = false
-					end
-
-					colorpicker.setcolor.MouseButton1Click:Connect(function()
-						if bounce then return end
-						if not open then
-							open = true
-							openpicker()
-						else
-							open = false
-							hidepicker()
-						end
-					end)
-
-					local hsv
-
-					if pickdata.Color then
-						hsv = { pickdata.Color:ToHSV() }
-					else
-						-- Handle the case where pickdata.Color is nil (e.g., use a default color)
-						hsv = { 0, 0, 0 } -- Replace with your desired default HSV values
-					end
-					local selected = pickdata.Color
-					local hueValue = hsv[1]
-
-					local function TableToColor(Table)
-						if type(Table) ~= "table" then return Table end
-						return Color3.fromHSV(Table[1],Table[2],Table[3])
-					end
-
-					local function FormatColor(Color, format, precision)
-						-- Default to RGB format with two decimal places precision
-						format = format or "RGB"
-						precision = precision or 2
-
-						local formattedColor = ""
-
-						if format == "RGB" then
-							return	math.round(Color.R * 255) .. "," .. math.round(Color.G * 255) .. "," .. math.round(Color.B * 255)
-						elseif format == "Hex" then
-							formattedColor = string.format("#%02X%02X%02X",
-								math.round(Color.R * 255),
-								math.round(Color.G * 255),
-								math.round(Color.B * 255)
-							)
-							-- Add more format options as needed
-
-							return formattedColor
-						end
-					end
-
-					local svpicker = colorpicker.container.SVPicker
-					local hueslider = colorpicker.container.Hue
-
-					local function updatestuff()
-						pickdata.Color = TableToColor(hsv)
-						colorpicker.setcolor.BackgroundColor3 = pickdata.Color  -- Change 'selectedcolor' to 'pickdata.Color'
-						svpicker.BackgroundColor3 = Color3.fromHSV(hsv[1], 1, 1)
-
-						tweenservice:Create(svpicker.Pin, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							Position = UDim2.new(hsv[2], 0, 1 - hsv[3], 0)
-						}):Play()
-
-						tweenservice:Create(hueslider.Pin, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							Position = UDim2.new(1 - hsv[1], 0, 0.5, 0)
-						}):Play()
-
-
-						local formattedHex = FormatColor(pickdata.Color, 'Hex')
-						colorpicker.container.HEX.HEXBox.Text = formattedHex
-
-
-
-						local formattedRGB = FormatColor(pickdata.Color,'RGB', 2)
-						colorpicker.container.RGB.RGBBox.Text = formattedRGB
-
-
-						if pickdata.Callback then
-							pickdata.Callback(pickdata.Color)  -- Change 'selectedcolor' to 'pickdata.Color'
-						end
-					end
-
-					updatestuff()
-
-					local sv, hue = nil, nil
-
-					centrl.util.AddConnection(svpicker.InputBegan, function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
-							sv = runservice.RenderStepped:Connect(function()
-								local pos = svpicker.AbsolutePosition
-								local mouse = game.Players.LocalPlayer:GetMouse()
-								local size = svpicker.AbsoluteSize
-								local ColorX = math.clamp(mouse.X - svpicker.AbsolutePosition.X,0,svpicker.AbsoluteSize.X) /svpicker.AbsoluteSize.X
-								svpicker.Pin:TweenSize(UDim2.new(0, 25,0, 25), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
-								local ColorY = math.clamp(mouse.Y - (svpicker.AbsolutePosition.Y + 0),0,svpicker.AbsoluteSize.Y) / svpicker.AbsoluteSize.Y
-								hsv[2] = ColorX
-								hsv[3] = 1 - ColorY
-								-- Change 'selectedcolor' to 'pickdata.Color'
-								updatestuff()
-							end)
-						end
-					end)
-
-					centrl.util.AddConnection(svpicker.InputEnded, function(i)
-						if i.UserInputType == Enum.UserInputType.MouseButton1 then
-							if sv then
-								svpicker.Pin:TweenSize(UDim2.new(0, 10,0, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.3, true)
-								sv:Disconnect()
-							end
-						end
-					end)
-
-					centrl.util.AddConnection(hueslider.InputBegan, function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
-							hue = runservice.RenderStepped:Connect(function()
-								local Mouse = game.Players.LocalPlayer:GetMouse()
-								hueslider.Pin:TweenSize(UDim2.new(0, 23,0, 23), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
-								local ColorX = math.clamp(Mouse.X - hueslider.AbsolutePosition.X, 0, hueslider.AbsoluteSize.X) / hueslider.AbsoluteSize.X
-								hsv[1] = 1 - ColorX
-								updatestuff()
-							end)
-						end
-					end)
-
-					centrl.util.AddConnection(hueslider.InputEnded, function(i)
-						if i.UserInputType == Enum.UserInputType.MouseButton1 then
-							if hue then
-								hueslider.Pin:TweenSize(UDim2.new(0, 10,0, 10), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 0.3, true)
-								hue:Disconnect()
-							end
-						end
-					end)
-
-					local hueIncrement = 0.005 -- Adjust this value to control the speed of the rainbow effect
-
-					-- Function to continuously update the hue and apply the rainbow effect
-					local function RainbowEffect()
-						hueValue = (hueValue + hueIncrement) % 1
-						hsv[1] = hueValue
-
-						updatestuff()
-					end
-
-					local isRainbowEnabled = false
-					local huerender = nil -- Initialize huerender outside the functions to make it accessible from both functions
-
-					-- Function to handle the rainbow effect toggle
-					local function ToggleRainbowEffect()
-						isRainbowEnabled = not isRainbowEnabled
-						if isRainbowEnabled then
-							if not huerender then
-								huerender = runservice.RenderStepped:Connect(RainbowEffect)
-								tweenservice:Create(colorpicker.container.Rainbow.Tick, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = centrl.theme.Hitbox}):Play()
-							end
-						else
-							if huerender then
-								huerender:Disconnect()
-								tweenservice:Create(colorpicker.container.Rainbow.Tick, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(30, 30, 30)}):Play()
-								huerender = nil -- Reset the huerender variable to nil when turning off the rainbow effect
-							end
-						end
-					end
-
-					colorpicker.container.Rainbow.MouseButton1Click:Connect(ToggleRainbowEffect)
-
-					colorpicker.container.HEX.HEXBox.FocusLost:Connect(function(Enter)
-						if not Enter then return end
-						local Hue,Saturation,Value = Color3.fromHex("#" .. colorpicker.container.HEX.HEXBox.Text):ToHSV()
-						colorpicker.container.RGB.RGBBox.Text = ""
-						hsv[1] = Hue
-						hsv[2] = Saturation
-						hsv[3] = Value
-						updatestuff()
-					end)
-
-					colorpicker.config.MouseEnter:Connect(function()
-						tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-						tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-						tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 50}):Play()
-					end)
-
-					colorpicker.config.MouseLeave:Connect(function()
-						tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(63, 63, 63)}):Play()
-						tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.61}):Play()
-						tweenservice:Create(colorpicker.config, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
-					end)
-
-					local function pickcopen()
-						pickerconfig.Visible = true
-						tweenservice:Create(pickerconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-						tweenservice:Create(pickerconfig.Copy.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-						tweenservice:Create(pickerconfig.Copy.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-						tweenservice:Create(pickerconfig.Paste.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-						tweenservice:Create(pickerconfig.Copy.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-						tweenservice:Create(pickerconfig.Paste.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
-						tweenservice:Create(pickerconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 0}):Play()
-						tweenservice:Create(pickerconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1}):Play()
-					end
-
-					local function pickcclose()
-						tweenservice:Create(pickerconfig, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						tweenservice:Create(pickerconfig.Copy.Frame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						tweenservice:Create(pickerconfig.Copy.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-						tweenservice:Create(pickerconfig.Paste.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1}):Play()
-						tweenservice:Create(pickerconfig.Copy.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-						tweenservice:Create(pickerconfig.Paste.ImageLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 1}):Play()
-						tweenservice:Create(pickerconfig.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Transparency = 1}):Play()
-						tweenservice:Create(pickerconfig.UIScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 0.5}):Play()
-						task.wait(0.3)
-						pickerconfig.Visible = false
-						pickerconfig:TweenPosition(UDim2.new(0,0,0,0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
-					end
-
-					local togconfig
-
-					local debounce1 = false
-
-					local function pickconfig()
-						if debounce1 then return end
-						debounce1 = true
-
-						if not pickerconfig.Visible then
-							togconfig = runservice.RenderStepped:Connect(function()
-								pickerconfig:TweenPosition(UDim2.new(0,colorpicker.config.AbsolutePosition.X,0,colorpicker.config.AbsolutePosition.Y + colorpicker.config.AbsoluteSize.Y + 5), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.1, true)
-								if not pickerconfig.Visible then
-									togconfig:Disconnect()
-								end
-							end)
-							pickcopen()
-						else
-							if togconfig then togconfig:Disconnect() end
-							pickcclose()
-						end
-
-						-- Debounce reset after a short delay
-						task.delay(0.4, function()
-							debounce1 = false
-						end)
-					end
-
-					colorpicker.config.MouseButton1Click:Connect(function()
-						pickconfig()
-					end)
-
-					pickerconfig.Copy.MouseEnter:Connect(function()
-						tweenservice:Create(pickerconfig.Copy, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
-					end)
-
-
-					pickerconfig.Copy.MouseLeave:Connect(function()
-						tweenservice:Create(pickerconfig.Copy, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					end)
-
-					pickerconfig.Paste.MouseEnter:Connect(function()
-						tweenservice:Create(pickerconfig.Paste, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.85}):Play()
-					end)
-
-
-					pickerconfig.Paste.MouseLeave:Connect(function()
-						tweenservice:Create(pickerconfig.Paste, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-					end)
-
-				end
-
-				function sectionelement:create_textinput(textidata)
-
-					local textinputdata = {
-						Title = textidata.Title or 'Textinput',
-						Placeholder = textidata.Placeholder or 'Discord T0ken here.',
-						Clearonlost = textidata.Clearonlost or false,
-						Callback = textidata.Callback
-					}
-
-					local textinput = pageholder.page.L.section.Container.textinput:Clone()
-					-- vars
-					textinput.Visible = true
-					textinput.Parent = section.Container
-					textinput.title.Text = textinputdata.Title
-					textinput.Name = textinputdata.Title
-					textinput.inputbox.TextLabel.Text = textinputdata.Placeholder
-					textinput.inputbox.TextLabel.BackgroundColor3 = Color3.fromRGB(117, 117, 117)
-
-					textinput.inputbox.TextBox.FocusLost:Connect(function(enter)
-						if not enter then return end
-						local scriptwork, Responderror = pcall(function()
-							textinputdata.Callback(textinput.inputbox.TextBox.Text)
-						end)
-						if textinputdata.Clearonlost then
-							textinput.inputbox.TextBox.Text = ''
-						end
-						if not scriptwork then
-							print("error ["..textinput.Name.."], " .. tostring(Responderror))
-						end
-					end)
-
-					textinput.inputbox.submit.MouseButton1Click:Connect(function()
-						local scriptwork, Responderror = pcall(function()
-							textinputdata.Callback(textinput.inputbox.TextBox.Text)
-						end)
-						if textinputdata.Clearonlost then
-							textinput.inputbox.TextBox.Text = ''
-						end
-						if not scriptwork then
-							print("error ["..textinput.Name.."], " .. tostring(Responderror))
-						end
-					end)
-
-					local frame = textinput.inputbox
-					local textBox = frame:WaitForChild("TextBox")
-					local cursor = frame:WaitForChild("ImageLabel")
-					local textLabel = frame:WaitForChild("TextLabel") -- Make sure you add a TextLabel under the same frame in the GUI
-
-					-- Set initial properties
-					cursor.Visible = false
-					cursor.AnchorPoint = Vector2.new(0, 0.5)
-					textLabel.AnchorPoint = Vector2.new(0, 0.5)
-					textLabel.Position = UDim2.new(0, 0, 0.5, 0)
-
-					-- Function to update cursor and text label positions
-					local function updateCursorPosition()
-						local caretPosition = textBox.CursorPosition - 1
-						if caretPosition < 0 then caretPosition = 0 end
-
-						local textUpToCaret = string.sub(textBox.Text, 1, caretPosition)
-						local textSize = textservice:GetTextSize(textUpToCaret, textBox.TextSize, textBox.Font, Vector2.new(math.huge, textBox.AbsoluteSize.Y))
-
-						-- Calculate the cursor position relative to the TextBox size
-						local cursorXPosition = math.min(textSize.X, textBox.AbsoluteSize.X - 1) -- Ensure the cursor stays within the TextBox boundaries
-						local newPosition = UDim2.new(0, cursorXPosition + 11, 0.5, 0)
-
-						local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
-						local tween = tweenservice:Create(cursor, tweenInfo, {Position = newPosition})
-						tween:Play()
-
-						-- Update the text label position and text
-						textLabel.Text = textBox.Text
-						textLabel.Position = UDim2.new(0, 0, 0.5, 0)
-					end
-
-					-- Handle TextBox input and caret position changes
-					textBox:GetPropertyChangedSignal("Text"):Connect(updateCursorPosition)
-					textBox:GetPropertyChangedSignal("CursorPosition"):Connect(updateCursorPosition)
-
-					-- Show the cursor when the TextBox is focused
-					textBox.Focused:Connect(function()
-						cursor.Visible = true
-						tweenservice:Create(cursor, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
-						tweenservice:Create(textLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-						updateCursorPosition()
-					end)
-
-					-- Hide the cursor when the TextBox is not focused
-					textBox.FocusLost:Connect(function()
-						tweenservice:Create(cursor, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-						tweenservice:Create(textLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(117, 117, 117)}):Play()
-						textLabel.Text = textinputdata.Placeholder
-						task.wait(0.3)
-						cursor.Visible = false
-					end)
-
-					-- Ensure the cursor updates if the user clicks to change position
-					userinput.InputBegan:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 and textBox:IsFocused() then
-							wait() -- Allow the caret position to update
-							updateCursorPosition()
-						end
-					end)
-
-					-- Ensure the cursor updates if the user types or deletes text
-					textBox.Changed:Connect(function(property)
-						if property == "Text" or property == "CursorPosition" then
-							updateCursorPosition()
-						end
-					end)
-
-
-				end
 
 
 	--[[	function sectionelement:createbind(binddata)
@@ -2164,11 +2164,10 @@ do
 				end)
 			end --]]
 
-				return sectionelement
-			end
-			return sectioninit
+			return sectionelement
 		end
-		return lib
+		return sectioninit
 	end
+	return lib
 end
 return centrl
