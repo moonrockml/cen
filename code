@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 2')
+print('new version 3')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -201,7 +201,15 @@ do
 
 		-- Add files
 		workText.Text = 'Checking/Adding Files...'
-		print(uisettings.Cfolder)
+		-- main folder
+		if not isfolder(uisettings.Cfolder) then
+			makefolder(uisettings.Cfolder)
+		end
+		wait()
+		--config folder
+		if not isfolder(uisettings.Cfolder..'/'..'config') then
+			makefolder(uisettings.Cfolder..'/'..'config')
+		end
 		if progressBar then
 			progresstween(1)
 		end
