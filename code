@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 3')
+print('new version 4 ')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -157,6 +157,7 @@ function centrl.util.AddDrag(Object, Main, speed)
 end
 
 centrl.util.FolderName = 'centrl'
+centrl.util.exe = 'cnt'
 
 do	
 	function centrl:load(setting)
@@ -215,8 +216,31 @@ do
 		end
 		task.wait(1)
 
-		-- Check if in discord
+		-- Check if in discord (took sum stuff from rayfield)
 		workText.Text = 'Checking For Discord Server...'
+		if uisettings.Discord then
+			if not isfolder(uisettings.Cfolder..'/'..'Invites') then
+				makefolder(uisettings.Cfolder..'/'..'Invites')
+			end
+			if not isfile(uisettings.Cfolder..'/'..'Invites'..'/'..uisettings.Discord.Invite..centrl.util.exe) then
+				if request then
+					request({
+						Url = 'http://127.0.0.1:6463/rpc?v=1',
+						Method = 'POST',
+						Headers = {
+							['Content-Type'] = 'application/json',
+							Origin = 'https://discord.com'
+						},
+						Body = https:JSONEncode({
+							cmd = 'INVITE_BROWSER',
+							nonce = https:GenerateGUID(false),
+							args = {code = uisettings.Discord.Invite}
+						})
+					})
+				end
+			end
+		end
+	
 		if progressBar then
 			progresstween(2)
 		end
