@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 5')
+print('new version 6')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -224,20 +224,30 @@ do
 				makefolder(uisettings.Cfolder..'/'..'Invites')
 			end
 			if not isfile(uisettings.Cfolder..'/'..'Invites'..'/'..uisettings.Discord.Invite..centrl.util.exe) then
+				print("Making request to Discord with invite code:", uisettings.Discord.Invite)
 				if request then
-					request({
-						Url = 'http://127.0.0.1:6463/rpc?v=1',
-						Method = 'POST',
-						Headers = {
-							['Content-Type'] = 'application/json',
-							Origin = 'https://discord.com'
-						},
-						Body = https:JSONEncode({
-							cmd = 'INVITE_BROWSER',
-							nonce = https:GenerateGUID(false),
-							args = {code = uisettings.Discord.Invite}
+					local success, err = pcall(function()
+						request({
+							Url = 'http://127.0.0.1:6463/rpc?v=1',
+							Method = 'POST',
+							Headers = {
+								['Content-Type'] = 'application/json',
+								Origin = 'https://discord.com'
+							},
+							Body = https:JSONEncode({
+								cmd = 'INVITE_BROWSER',
+								nonce = https:GenerateGUID(false),
+								args = {code = uisettings.Discord.Invite}
+							})
 						})
-					})
+					end)
+					if success then
+						print("Request succeeded")
+					else
+						warn("Request failed: ", err)
+					end
+				else
+					warn("Request function is not available")
 				end
 			end
 		end
