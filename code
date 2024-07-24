@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 1')
+print('new version 2')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -201,7 +201,7 @@ do
 
 		-- Add files
 		workText.Text = 'Checking/Adding Files...'
-		print(uisettings.cfolder)
+		print(uisettings.Cfolder)
 		if progressBar then
 			progresstween(1)
 		end
