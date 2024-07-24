@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 4 ')
+print('new version 5')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -178,7 +178,8 @@ do
 		loaderframe.notice.TextTransparency = 1
 		
 		local uisettings = {
-			Cfolder = setting.Cfolder or centrl.util.FolderName
+			Cfolder = setting.Cfolder or centrl.util.FolderName,
+			Discord = setting.Discord
 		}
 
 		task.wait(3)
