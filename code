@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 8')
+print('new version 9')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -293,7 +293,26 @@ do
 	APPVersion = "1.0"     --* Application Version
 	
 	local req = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=init&ver=' .. APPVersion)
-	local data = https:JSONDecode(req)
+	local data1 = https:JSONDecode(req)
+	
+	if data1.success == true then
+		initialized = true
+		sessionid = data1.sessionid
+		--print(req)
+	elseif (data1.message == "invalidver") then
+		print(" Error: Wrong application version..")
+
+		StarterGui:SetCore("SendNotification", {
+			Title = 'Error!',
+			Text = " Error: Wrong application version..",
+			Duration = 3
+		})
+
+		return false
+	else
+		print(" Error: " .. data1.message)
+		return false
+	end
 	
 	local Username = ""
 	local Password = ""
@@ -920,6 +939,9 @@ do
 	-- user login --
 	Username = window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text
 	Password = window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text
+	
+	local req2 = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=login&username=' .. Username .. '&pass=' .. Password ..'&ver=' .. APPVersion .. '&sessionid=' .. sessionid)
+	local data = https:JSONDecode(req2)
 	
 	window.sublib.settfr.ScrollingFrame.Login.Load.MouseButton1Click:Connect(function()
 		if data.success == false then 
