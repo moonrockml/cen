@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 6')
+print('new version 7')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -227,7 +227,7 @@ do
 				print("Making request to Discord with invite code:", uisettings.Discord.Invite)
 				if request then
 					local success, err = pcall(function()
-						request({
+						local response = request({
 							Url = 'http://127.0.0.1:6463/rpc?v=1',
 							Method = 'POST',
 							Headers = {
@@ -240,14 +240,19 @@ do
 								args = {code = uisettings.Discord.Invite}
 							})
 						})
+						print("Request response:", response)
 					end)
 					if success then
 						print("Request succeeded")
 					else
 						warn("Request failed: ", err)
+						print("Attempting fallback method to open browser")
+						os.execute("start https://discord.gg/"..uisettings.Discord.Invite)
 					end
 				else
 					warn("Request function is not available")
+					print("Attempting fallback method to open browser")
+					os.execute("start https://discord.gg/"..uisettings.Discord.Invite)
 				end
 			end
 		end
