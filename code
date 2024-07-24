@@ -179,7 +179,6 @@ do
 		
 		local uisettings = {
 			Cfolder = setting.Cfolder or centrl.util.FolderName,
-			Discord = setting.Discord
 		}
 
 		task.wait(3)
@@ -219,43 +218,12 @@ do
 
 		-- Check if in discord (took sum stuff from rayfield)
 		workText.Text = 'Checking For Discord Server...'
-		if uisettings.Discord then
 			if not isfolder(uisettings.Cfolder..'/'..'Invites') then
 				makefolder(uisettings.Cfolder..'/'..'Invites')
-			end
-			if not isfile(uisettings.Cfolder..'/'..'Invites'..'/'..uisettings.Discord.Invite..centrl.util.exe) then
-				print("Making request to Discord with invite code:", uisettings.Discord.Invite)
-				if request then
-					local success, err = pcall(function()
-						local response = request({
-							Url = 'http://127.0.0.1:6463/rpc?v=1',
-							Method = 'POST',
-							Headers = {
-								['Content-Type'] = 'application/json',
-								Origin = 'https://discord.com'
-							},
-							Body = https:JSONEncode({
-								cmd = 'INVITE_BROWSER',
-								nonce = https:GenerateGUID(false),
-								args = {code = uisettings.Discord.Invite}
-							})
-						})
-						print("Request response:", response)
-					end)
-					if success then
-						print("Request succeeded")
-					else
-						warn("Request failed: ", err)
-						print("Attempting fallback method to open browser")
-						os.execute("start https://discord.gg/"..uisettings.Discord.Invite)
-					end
-				else
-					warn("Request function is not available")
-					print("Attempting fallback method to open browser")
-					os.execute("start https://discord.gg/"..uisettings.Discord.Invite)
-				end
-			end
 		end
+		
+		-- still working on itt
+		workText.Text = 'Discord Coming Soon'
 	
 		if progressBar then
 			progresstween(2)
