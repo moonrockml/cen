@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 7')
+print('new version 8')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -10,6 +10,7 @@ local userinput =		game:GetService("UserInputService")
 local players =         game:GetService("Players"):GetPlayers()
 local textservice =     game:GetService('TextService')
 local coregui =         game:GetService("CoreGui")
+local StarterGui =      game:GetService('StarterGui')
 local request = (syn and syn.request) or (http and http.request) or http_request
 
 local loader = game:GetObjects("rbxassetid://18586645572")[1]
@@ -286,6 +287,16 @@ centrl.util.removeplaceholder(window.sublib.settfr.ScrollingFrame, 'section')
 do
 
 	local librarysettings = {}
+	
+	Name = "tester" --* Application Name
+	Ownerid = "rD42QyOqWU" --* OwnerID
+	APPVersion = "1.0"     --* Application Version
+	
+	local req = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=init&ver=' .. APPVersion)
+	local data = https:JSONDecode(req)
+	
+	local Username = ""
+	local Password = ""
 
 	function librarysettings:initsection(Name)
 		local getelements = {}
@@ -905,7 +916,33 @@ do
 		end,
 	})
 	--  --
+	
+	-- user login --
+	Username = window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text
+	Password = window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text
+	
+	window.sublib.settfr.ScrollingFrame.Login.Load.MouseButton1Click:Connect(function()
+		if data.success == false then 
 
+			StarterGui:SetCore("SendNotification", {
+				Title = 'Error',
+				Text = " Error: " .. data.message,
+				Duration = 5
+			})
+
+			return false
+		end
+
+		StarterGui:SetCore("SendNotification", {
+			Title = 'Success',
+			Text = " Successfully Authorized :)",
+			Duration = 5
+		})
+	end)
+	
+	
+
+	
 end
 
 ---\\ ----------------- // ---
