@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 20')
+print('new version 21')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -8,6 +8,7 @@ local https = 			game:GetService("HttpService")
 local runservice =		game:GetService("RunService")
 local userinput =		game:GetService("UserInputService")
 local players =         game:GetService("Players"):GetPlayers()
+local player =          game:GetService('Players')
 local textservice =     game:GetService('TextService')
 local coregui =         game:GetService("CoreGui")
 local StarterGui =      game:GetService('StarterGui')
@@ -1086,6 +1087,13 @@ function centrl:init(library)
 			debounce = false
 		end)
 	end)
+	
+	local userId = player.LocalPlayer.UserId
+	local thumbType = Enum.ThumbnailType.HeadShot
+	local thumbSize = Enum.ThumbnailSize.Size420x420
+	local content, isReady = player:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+	window.profile.Frame.Image = (isReady and content) 
 
 	-- theme/preload
 
