@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 12')
+print('new version 13')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -339,9 +339,16 @@ do
 
 	local Username = ""
 	local Password = ""
-
-	window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text = Username
-	window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text = Password
+	
+	window.sublib.settfr.ScrollingFrame.Login.user.TextBox.FocusLost:Connect(function()
+		window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text = Username
+		print(Username)
+	end)
+	
+	window.sublib.settfr.ScrollingFrame.Login.key.TextBox.FocusLost:Connect(function()
+		window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text = Password
+		print(Password)
+	end)
 
 	window.sublib.settfr.ScrollingFrame.Login.Load.MouseButton1Click:Connect(function()
 		if Username == "" then
