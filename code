@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 11')
+print('new version 12')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -360,28 +360,30 @@ do
 			})
 			return false
 		end
-	end)
-	
-	local req = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=login&username=' .. Username .. '&pass=' .. Password ..'&ver=' .. APPVersion .. '&sessionid=' .. sessionid)
-	local data = https:JSONDecode(req)
-	
-	if data.success == false then 
-		print(" Error: " .. data.message )
+		
+		local req = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=login&username=' .. Username .. '&pass=' .. Password ..'&ver=' .. APPVersion .. '&sessionid=' .. sessionid)
+		local data = https:JSONDecode(req)
+
+		if data.success == false then 
+			print(" Error: " .. data.message )
+
+			StarterGui:SetCore("SendNotification", {
+				Title = LuaName,
+				Text = " Error: " .. data.message,
+				Duration = 5
+			})
+
+			return false
+		end
 
 		StarterGui:SetCore("SendNotification", {
 			Title = LuaName,
-			Text = " Error: " .. data.message,
+			Text = " Successfully Authorized :)",
 			Duration = 5
 		})
-
-		return false
-	end
-
-	StarterGui:SetCore("SendNotification", {
-		Title = LuaName,
-		Text = " Successfully Authorized :)",
-		Duration = 5
-	})
+	end)
+	
+	
 
 	function librarysettings:initsection(Name)
 		local getelements = {}
