@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 16')
+print('new version 17')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -390,7 +390,7 @@ do
 			Duration = 5
 		})
 		
-		window.profile.Frame.Username.Text = Username
+		window.profile.Frame.PUsername.Text = Username
 	end)
 	
 	
