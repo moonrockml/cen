@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 15')
+print('new version 16')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -386,9 +386,11 @@ do
 
 		StarterGui:SetCore("SendNotification", {
 			Title = LuaName,
-			Text = " Successfully Authorized :)",
+			Text = " Successfully Authorized",
 			Duration = 5
 		})
+		
+		window.profile.Frame.Username.Text = Username
 	end)
 	
 	
