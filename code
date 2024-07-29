@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 21')
+print('new version 22')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -36,8 +36,8 @@ $$$         $$""""   $$$ "Y$c$$     $$      $$$$$$c     $$'           $$$       
 local centrl = {
 
 	theme = {
-		['Accent'] = Color3.fromRGB(85, 85, 255);
-		['Hitbox'] = Color3.fromRGB(85, 85, 255);
+		['Accent'] = Color3.fromRGB(248, 33, 255);
+		['Hitbox'] = Color3.fromRGB(248, 33, 255);
 		['Glow']   = Color3.fromRGB(0, 0, 0)
 	};
 
@@ -1670,7 +1670,7 @@ function centrl:init(library)
 						end
 						dropdown.container:TweenPosition(UDim2.new(1, 0,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
 						tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
-						dropdown:TweenSize(UDim2.new(1, -20,0, 46), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+						dropdown:TweenSize(UDim2.new(1, -20,0, 54), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
 						task.wait(0.2)
 						dropdown.container.Visible = false
 					end
@@ -1762,7 +1762,7 @@ function centrl:init(library)
 								end
 								dropdown.container:TweenPosition(UDim2.new(1, 0,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
 								tweenservice:Create(dropdown.dropframe.arrow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 0}):Play()
-								dropdown:TweenSize(UDim2.new(1, -20,0, 46), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+								dropdown:TweenSize(UDim2.new(1, -20,0, 54), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
 								task.wait(0.2)
 								dropdown.container.Visible = false
 
