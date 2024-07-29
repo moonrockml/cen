@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 9')
+print('new version 11')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -177,7 +177,7 @@ do
 		loaderframe.UIScale.Scale = 0.85
 		loaderframe.UIStroke.Transparency = 1
 		loaderframe.notice.TextTransparency = 1
-		
+
 		local uisettings = {
 			Cfolder = setting.Cfolder or centrl.util.FolderName,
 		}
@@ -219,13 +219,13 @@ do
 
 		-- Check if in discord (took sum stuff from rayfield)
 		workText.Text = 'Checking For Discord Server...'
-			if not isfolder(uisettings.Cfolder..'/'..'Invites') then
-				makefolder(uisettings.Cfolder..'/'..'Invites')
+		if not isfolder(uisettings.Cfolder..'/'..'Invites') then
+			makefolder(uisettings.Cfolder..'/'..'Invites')
 		end
-		
+
 		-- still working on itt
 		workText.Text = 'Discord Coming Soon'
-	
+
 		if progressBar then
 			progresstween(2)
 		end
@@ -282,40 +282,106 @@ centrl.util.removeplaceholder(centrl.util.tabholder, 'tbbtn')
 centrl.util.removeplaceholder(centrl.util.pageholder, 'page')
 centrl.util.removeplaceholder(centrl.util.pageholder.page.L, 'section')
 centrl.util.removeplaceholder(window.sublib.settfr.ScrollingFrame, 'section')
+local LuaName = 'centrl'
 
 --- == //SETTINGS\\ == --- lazy code could make it more advanced mabe in the future
 do
 
 	local librarysettings = {}
-	
+
+	local initialized = false
+	local sessionid = ""
+
+	StarterGui:SetCore("SendNotification", {
+		Title = 'centrl',
+		Text = " Intializing...",
+		Duration = 5
+	})
+
 	Name = "tester" --* Application Name
 	Ownerid = "rD42QyOqWU" --* OwnerID
 	APPVersion = "1.0"     --* Application Version
-	
+
 	local req = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=init&ver=' .. APPVersion)
-	local data1 = https:JSONDecode(req)
-	
-	if data1.success == true then
+
+	if req == "KeyAuth_Invalid" then 
+		print(" Error: Application not found.")
+
+		StarterGui:SetCore("SendNotification", {
+			Title = LuaName,
+			Text = " Error: Application not found.",
+			Duration = 3
+		})
+
+		return false
+	end
+
+	local data = https:JSONDecode(req)
+
+	if data.success == true then
 		initialized = true
-		sessionid = data1.sessionid
+		sessionid = data.sessionid
 		--print(req)
-	elseif (data1.message == "invalidver") then
+	elseif (data.message == "invalidver") then
 		print(" Error: Wrong application version..")
 
 		StarterGui:SetCore("SendNotification", {
-			Title = 'Error!',
+			Title = LuaName,
 			Text = " Error: Wrong application version..",
 			Duration = 3
 		})
 
 		return false
 	else
-		print(" Error: " .. data1.message)
+		print(" Error: " .. data.message)
 		return false
 	end
-	
+
 	local Username = ""
 	local Password = ""
+
+	window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text = Username
+	window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text = Password
+
+	window.sublib.settfr.ScrollingFrame.Login.Load.MouseButton1Click:Connect(function()
+		if Username == "" then
+			StarterGui:SetCore("SendNotification", {
+				Title = LuaName,
+				Text = " Error: Username is empty.",
+				Duration = 3
+			})
+			return false
+		end
+		if Password == "" then
+			StarterGui:SetCore("SendNotification", {
+				Title = LuaName,
+				Text = " Error: Password is empty.",
+				Duration = 3
+			})
+			return false
+		end
+	end)
+	
+	local req = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=login&username=' .. Username .. '&pass=' .. Password ..'&ver=' .. APPVersion .. '&sessionid=' .. sessionid)
+	local data = https:JSONDecode(req)
+	
+	if data.success == false then 
+		print(" Error: " .. data.message )
+
+		StarterGui:SetCore("SendNotification", {
+			Title = LuaName,
+			Text = " Error: " .. data.message,
+			Duration = 5
+		})
+
+		return false
+	end
+
+	StarterGui:SetCore("SendNotification", {
+		Title = LuaName,
+		Text = " Successfully Authorized :)",
+		Duration = 5
+	})
 
 	function librarysettings:initsection(Name)
 		local getelements = {}
@@ -896,7 +962,7 @@ do
 				title = 'Density',
 				range = {0,1},
 				increment = 0.1,
-				startvalue = 0,
+				startvalue = 0.17,
 				callback = function(lol)
 
 					window.Shadow.Image.ImageTransparency = lol
@@ -935,36 +1001,12 @@ do
 		end,
 	})
 	--  --
-	
+
 	-- user login --
-	Username = window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text
-	Password = window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text
-	
-	local req2 = game:HttpGet('https://keyauth.win/api/1.1/?name=' .. Name .. '&ownerid=' .. Ownerid .. '&type=login&username=' .. Username .. '&pass=' .. Password ..'&ver=' .. APPVersion .. '&sessionid=' .. sessionid)
-	local data = https:JSONDecode(req2)
-	
-	window.sublib.settfr.ScrollingFrame.Login.Load.MouseButton1Click:Connect(function()
-		if data.success == false then 
 
-			StarterGui:SetCore("SendNotification", {
-				Title = 'Error',
-				Text = " Error: " .. data.message,
-				Duration = 5
-			})
 
-			return false
-		end
 
-		StarterGui:SetCore("SendNotification", {
-			Title = 'Success',
-			Text = " Successfully Authorized :)",
-			Duration = 5
-		})
-	end)
-	
-	
 
-	
 end
 
 ---\\ ----------------- // ---
