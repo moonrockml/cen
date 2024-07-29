@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 17')
+print('new version 18')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -390,7 +390,11 @@ do
 			Duration = 5
 		})
 		
-		window.profile.Frame.PUsername.Text = Username
+		if ui.library.profile.Frame.PUsername then
+			ui.library.profile.Frame.PUsername.Text = Username
+		else
+			print("Error: PUsername label not found")
+		end
 	end)
 	
 	
