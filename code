@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 13')
+print('new version 14')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -342,11 +342,13 @@ do
 	
 	window.sublib.settfr.ScrollingFrame.Login.user.TextBox.FocusLost:Connect(function()
 		window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text = Username
+		window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text = window.sublib.settfr.ScrollingFrame.Login.user.TextBox.Text
 		print(Username)
 	end)
 	
 	window.sublib.settfr.ScrollingFrame.Login.key.TextBox.FocusLost:Connect(function()
 		window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text = Password
+		window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text = window.sublib.settfr.ScrollingFrame.Login.key.TextBox.Text
 		print(Password)
 	end)
 
