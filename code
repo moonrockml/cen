@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 25')
+print('new version 26')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -180,8 +180,8 @@ do
 		loaderframe.notice.TextTransparency = 1
 
 		local uisettings = {
-			Logo = 'rbxassetid://'..setting.Logo or 'http://www.roblox.com/asset/?id=18404006294';
-			Cfolder = setting.Cfolder or centrl.util.FolderName;
+			Logo = 'rbxassetid://'..setting.Logo or 'http://www.roblox.com/asset/?id=18404006294',
+			Cfolder = setting.Cfolder or centrl.util.FolderName,
 		}
 		
 		if not uisettings.Cfolder then
