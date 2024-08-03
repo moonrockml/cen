@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 22')
+print('new version 24')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -2126,6 +2126,13 @@ function centrl:init(library)
 					if not scriptwork then
 						print("error ["..textinput.Name.."], " .. tostring(Responderror))
 					end
+				end)
+				
+				textinput.inputbox.submit.MouseEnter:Connect(function()
+					tweenservice:Create(textinput.inputbox.submit.load, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
+				end)
+				textinput.inputbox.submit.MouseLeave:Connect(function()
+					tweenservice:Create(textinput.inputbox.submit.load, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageTransparency = 0.7}):Play()
 				end)
 
 				textinput.inputbox.submit.MouseButton1Click:Connect(function()
