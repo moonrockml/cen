@@ -1,6 +1,6 @@
 -- vars --
 
-print('new version 28')
+print('new version 29')
 
 local inputservice =	game:GetService("InsertService")
 local tweenservice = 	game:GetService("TweenService")
@@ -1101,7 +1101,7 @@ function centrl:init(library)
 	local content, isReady = player:GetUserThumbnailAsync(userId, thumbType, thumbSize)
 
 	window.profile.Frame.Image = (isReady and content) 
-	window.profile.Frame.Username = player.LocalPlayer.Name
+	window.profile.Frame.Username.Text = player.LocalPlayer.Name
 
 	-- theme/preload
 
